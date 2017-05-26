@@ -1,6 +1,6 @@
 package org.crama.ejustbox.error;
 
-import org.crama.ejustbox.model.consultation.SystemErrorType;
+import be.fgov.ejustice.errors.service.v1.SystemErrorType;
 
 public class EJustBoxClientException extends Exception {
 

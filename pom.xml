@@ -44,11 +44,11 @@
 
 	<build>
 			<plugins>
-				<!-- <plugin>
+				<plugin>
 	                <groupId>org.springframework.boot</groupId>
 	                <artifactId>spring-boot-maven-plugin</artifactId>
-	            </plugin> -->
-				 <plugin>
+	            </plugin>
+				<!-- <plugin>
 				    <groupId>org.jvnet.jaxb2.maven2</groupId>
 				    <artifactId>maven-jaxb2-plugin</artifactId>
 				    <version>0.13.1</version>
@@ -71,7 +71,7 @@
 				            </schema>
 				        </schemas>
 				    </configuration>
-				</plugin> 
+				</plugin>  -->
 			</plugins>
 	</build>
 

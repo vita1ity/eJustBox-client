@@ -14,7 +14,11 @@ public class EJustBoxConfiguration {
 	public Jaxb2Marshaller marshaller() {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		
-		marshaller.setContextPath("org.crama.ejustbox.model");
+		marshaller.setContextPaths(
+				"be.fgov.ejustice.ejustbox.consultation.protocol.v1",
+				"be.fgov.ejustice.ejustbox.publication.protocol.v1",
+				"be.fgov.ejustice.ejustbox.core.v1", 
+				"be.fgov.ejustice.errors.service.v1");
 		return marshaller;
 	}
 

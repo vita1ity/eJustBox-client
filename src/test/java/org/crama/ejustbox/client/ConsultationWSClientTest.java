@@ -9,17 +9,6 @@ import java.util.Arrays;
 
 import org.crama.ejustbox.configuration.EJustBoxConfiguration;
 import org.crama.ejustbox.error.EJustBoxClientException;
-import org.crama.ejustbox.model.consultation.ActorType2;
-import org.crama.ejustbox.model.consultation.DeleteMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetBoxInfoResponseType;
-import org.crama.ejustbox.model.consultation.GetFullMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetHistoryResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageAcknowledgmentsStatusRequestType;
-import org.crama.ejustbox.model.consultation.GetMessageAcknowledgmentsStatusResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageListResponseType;
-import org.crama.ejustbox.model.consultation.MoveMessageResponseType;
-import org.crama.ejustbox.model.consultation.ObjectFactory;
-import org.crama.ejustbox.model.consultation.SystemErrorType;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +17,17 @@ import org.springframework.oxm.XmlMappingException;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.util.ReflectionTestUtils;
+
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.DeleteMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetBoxInfoResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetFullMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetHistoryResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageAcknowledgmentsStatusResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageListResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageResponseType;
+import be.fgov.ejustice.ejustbox.core.v1.ActorType;
+import be.fgov.ejustice.ejustbox.core.v1.ObjectFactory;
+import be.fgov.ejustice.errors.service.v1.SystemErrorType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes=EJustBoxConfiguration.class)
@@ -120,9 +120,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetBoxInfo_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetBoxInfoResponseType response = mockConsultationClient.getBoxInfo(actor);
 		
@@ -137,9 +141,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetBoxInfo_Error() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_ERROR);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetBoxInfoResponseType response = null;
 		try {
@@ -162,9 +170,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetMessageList_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetMessageListResponseType response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX, END_INDEX);
 		
@@ -182,9 +194,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetMessageList_Error_EndIndexGreaterThanStartIndex() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetMessageListResponseType response = null;
 		try {
@@ -207,9 +223,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetMessageList_Error_MaxMessageNumViolation() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetMessageListResponseType response = null;
 		try {
@@ -232,9 +252,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetFullMessage_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetFullMessageResponseType response = mockConsultationClient.getFullMessage(actor, SOURCE, MESSAGE_ID);
 		
@@ -248,9 +272,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetFullMessage_Error_MessageIdIsInvalid() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetFullMessageResponseType response = null;
 		try {
@@ -274,9 +302,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testMoveMessage_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		MoveMessageResponseType response = mockConsultationClient.moveMessages(actor, MOVE_MESSAGE_SOURCE, MOVE_MESSAGE_DEST, 
 				new ArrayList<String>(Arrays.asList(MOVE_MESSAGE_ID_1, MOVE_MESSAGE_ID_2)));
@@ -289,9 +321,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testMoveMessage_Error_MessageIdIsInvalid() throws XmlMappingException, IOException, EJustBoxClientException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		MoveMessageResponseType response = mockConsultationClient.moveMessages(actor, MOVE_MESSAGE_SOURCE, MOVE_MESSAGE_DEST, 
 					new ArrayList<String>(Arrays.asList(MESSAGE_ID_INVALID, MOVE_MESSAGE_ID_2)));
@@ -305,9 +341,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetFullMessage_Error_SourceDestInvalid() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		MoveMessageResponseType response = null;
 		try {
@@ -334,9 +374,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testDeleteMessage_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		DeleteMessageResponseType response = mockConsultationClient.deleteMessages(actor, SOURCE, 
 				new ArrayList<String>(Arrays.asList(MOVE_MESSAGE_ID_1, MOVE_MESSAGE_ID_2)));
@@ -349,9 +393,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testDeleteMessage_Error_MessageIdIsInvalid() throws XmlMappingException, IOException, EJustBoxClientException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		DeleteMessageResponseType response = mockConsultationClient.deleteMessages(actor, SOURCE, 
 					new ArrayList<String>(Arrays.asList(MESSAGE_ID_INVALID, MOVE_MESSAGE_ID_2)));
@@ -365,9 +413,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetHistory_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetHistoryResponseType response = mockConsultationClient.getHistory(actor, SOURCE, MESSAGE_HISTORY_ID_REQUEST);
 		
@@ -381,9 +433,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetHistory_Error() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetHistoryResponseType response = null;
 		try {
@@ -407,9 +463,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetMessageAcknowlegmentsStatus_Success() throws XmlMappingException, EJustBoxClientException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_SUCCESS, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetMessageAcknowledgmentsStatusResponseType response = mockConsultationClient.getMessageAcknowlegments(actor, MESSAGE_HISTORY_ID_REQUEST, null, null);
 		
@@ -424,9 +484,13 @@ public class ConsultationWSClientTest {
 	@Test
     public void testGetMessageAcknowlegmentsStatus_Error() throws XmlMappingException, IOException {
 		
-		ActorType2 actor = OBJECT_FACTORY.createActorType2(ACTOR_ID_ERROR, ACTOR_TYPE, ACTOR_QUALIYY, ACTOR_NAME);
+		ActorType actor = OBJECT_FACTORY.createActorType();
+		actor.setId(ACTOR_ID_SUCCESS);
+		actor.setType(ACTOR_TYPE);
+		actor.setQuality(ACTOR_QUALIYY);
+		actor.setName(ACTOR_NAME);
 		
-		ReflectionTestUtils.setField(mockConsultationClient, "webServiceUrl", WS_URL);
+		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
 		GetMessageAcknowledgmentsStatusResponseType response = null;
 		try {
@@ -446,6 +510,8 @@ public class ConsultationWSClientTest {
 		assertNull(response);
 		
     }
+	
+	
 	
 	
 }

@@ -4,37 +4,38 @@ import java.io.IOException;
 import java.util.List;
 
 import org.crama.ejustbox.error.EJustBoxClientException;
-import org.crama.ejustbox.model.consultation.ActorType2;
-import org.crama.ejustbox.model.consultation.DeleteMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetBoxInfoResponseType;
-import org.crama.ejustbox.model.consultation.GetFullMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetHistoryResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageAcknowledgmentsStatusResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageListResponseType;
-import org.crama.ejustbox.model.consultation.MoveMessageResponseType;
 import org.springframework.oxm.XmlMappingException;
+
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.DeleteMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetBoxInfoResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetFullMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetHistoryResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageAcknowledgmentsStatusResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageListResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageResponseType;
+import be.fgov.ejustice.ejustbox.core.v1.ActorType;
 
 public interface ConsultationWSClient {
 
-	GetBoxInfoResponseType getBoxInfo(ActorType2 actor) 
+	GetBoxInfoResponseType getBoxInfo(ActorType actor) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	GetMessageListResponseType getMessageList(ActorType2 actor, String source, int startIndex, int endIndex) 
+	GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	GetFullMessageResponseType getFullMessage(ActorType2 actor, String source, String messageId) 
+	GetFullMessageResponseType getFullMessage(ActorType actor, String source, String messageId) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	MoveMessageResponseType moveMessages(ActorType2 actor, String source, String destination, List<String> messageId) 
+	MoveMessageResponseType moveMessages(ActorType actor, String source, String destination, List<String> messageId) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	DeleteMessageResponseType deleteMessages(ActorType2 actor, String source, List<String> messageId) 
+	DeleteMessageResponseType deleteMessages(ActorType actor, String source, List<String> messageId) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	GetHistoryResponseType getHistory(ActorType2 actor, String source, String messageId) 
+	GetHistoryResponseType getHistory(ActorType actor, String source, String messageId) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	GetMessageAcknowledgmentsStatusResponseType getMessageAcknowlegments(ActorType2 actor, String messageId, Integer startIndex, Integer endIndex) 
+	GetMessageAcknowledgmentsStatusResponseType getMessageAcknowlegments(ActorType actor, String messageId, Integer startIndex, Integer endIndex) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
 	

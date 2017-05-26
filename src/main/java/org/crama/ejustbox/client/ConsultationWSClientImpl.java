@@ -6,22 +6,6 @@ import java.util.List;
 import javax.xml.bind.JAXBElement;
 
 import org.crama.ejustbox.error.EJustBoxClientException;
-import org.crama.ejustbox.model.consultation.ActorType2;
-import org.crama.ejustbox.model.consultation.DeleteMessageRequestType;
-import org.crama.ejustbox.model.consultation.DeleteMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetBoxInfoRequestType;
-import org.crama.ejustbox.model.consultation.GetBoxInfoResponseType;
-import org.crama.ejustbox.model.consultation.GetFullMessageResponseType;
-import org.crama.ejustbox.model.consultation.GetHistoryResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageAcknowledgmentsStatusRequestType;
-import org.crama.ejustbox.model.consultation.GetMessageAcknowledgmentsStatusResponseType;
-import org.crama.ejustbox.model.consultation.GetMessageListResponseType;
-import org.crama.ejustbox.model.consultation.GetMessagesListRequestType;
-import org.crama.ejustbox.model.consultation.MessageRequestType;
-import org.crama.ejustbox.model.consultation.MoveMessageRequestType;
-import org.crama.ejustbox.model.consultation.MoveMessageResponseType;
-import org.crama.ejustbox.model.consultation.ObjectFactory;
-import org.crama.ejustbox.model.consultation.SystemErrorType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,30 +14,49 @@ import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.SoapFaultDetailElement;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.DeleteMessageRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.DeleteMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetBoxInfoRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetBoxInfoResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetFullMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetHistoryResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageAcknowledgmentsStatusRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageAcknowledgmentsStatusResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageListResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessagesListRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MessageRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageRequestType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageResponseType;
+import be.fgov.ejustice.ejustbox.consultation.protocol.v1.ObjectFactory;
+import be.fgov.ejustice.ejustbox.core.v1.ActorType;
+import be.fgov.ejustice.errors.service.v1.SystemErrorType;
+
 public class ConsultationWSClientImpl extends WebServiceGatewaySupport implements ConsultationWSClient {
 	
-	private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+	private static final ObjectFactory CONSULTATION_OBJECT_FACTORY = new ObjectFactory();
 	
 	private static final Logger log = LoggerFactory.getLogger(ConsultationWSClientImpl.class);
 	
-	@Value("${ejustbox.service.url}")
-	private String webServiceUrl;
+	@Value("${ejustbox.consultation.service.url}")
+	private String consultationServiceUrl;
 	
 	@SuppressWarnings("unchecked")
-	public GetBoxInfoResponseType getBoxInfo(ActorType2 actor) throws EJustBoxClientException, XmlMappingException, IOException {
+	public GetBoxInfoResponseType getBoxInfo(ActorType actor) throws EJustBoxClientException, XmlMappingException, IOException {
 
 		log.info("Requesting get box info for actor: " + actor);
 		
-		GetBoxInfoRequestType request = OBJECT_FACTORY.createGetBoxInfoRequestType(actor, false);
+		
+		GetBoxInfoRequestType request = CONSULTATION_OBJECT_FACTORY.createGetBoxInfoRequestType();
+		request.setActor(actor);
 
-		JAXBElement<GetBoxInfoRequestType> requestCall = OBJECT_FACTORY.createGetBoxInfoRequest(request);
+		JAXBElement<GetBoxInfoRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createGetBoxInfoRequest(request);
 		
 		JAXBElement<GetBoxInfoResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<GetBoxInfoResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -72,25 +75,25 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GetMessageListResponseType getMessageList(ActorType2 actor, String source, int startIndex, int endIndex) 
+	public GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex) 
 			throws XmlMappingException, IOException, EJustBoxClientException {
 
 		log.info("Requesting get message list for actor: " + actor + "/n source: " + source + ", start index: " + startIndex + ", endIndex: " + endIndex);
 		
-		GetMessagesListRequestType request = OBJECT_FACTORY.createGetMessagesListRequestType();
+		GetMessagesListRequestType request = CONSULTATION_OBJECT_FACTORY.createGetMessagesListRequestType();
 		request.setActor(actor);
 		request.setSource(source);
 		request.setStartIndex(startIndex);
 		request.setEndIndex(endIndex);
 		
-		JAXBElement<GetMessagesListRequestType> requestCall = OBJECT_FACTORY.createGetMessagesListRequest(request);
+		JAXBElement<GetMessagesListRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createGetMessagesListRequest(request);
 		
 		JAXBElement<GetMessageListResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<GetMessageListResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -111,24 +114,24 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GetFullMessageResponseType getFullMessage(ActorType2 actor, String source, String messageId)
+	public GetFullMessageResponseType getFullMessage(ActorType actor, String source, String messageId)
 			throws EJustBoxClientException, XmlMappingException, IOException {
 		
 		log.info("Requesting get full message for actor: " + actor + "/n source: " + source + ", message id: " + messageId);
 		
-		MessageRequestType request = OBJECT_FACTORY.createMessageRequestType();
+		MessageRequestType request = CONSULTATION_OBJECT_FACTORY.createMessageRequestType();
 		request.setActor(actor);
 		request.setSource(source);
 		request.setMessageId(messageId);
 		
-		JAXBElement<MessageRequestType> requestCall = OBJECT_FACTORY.createGetFullMessageRequest(request);
+		JAXBElement<MessageRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createGetFullMessageRequest(request);
 		
 		JAXBElement<GetFullMessageResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<GetFullMessageResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -146,25 +149,27 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public MoveMessageResponseType moveMessages(ActorType2 actor, String source, String destination,
+	public MoveMessageResponseType moveMessages(ActorType actor, String source, String destination,
 			List<String> messageId) throws EJustBoxClientException, XmlMappingException, IOException {
 		
 		log.info("Requesting move message for actor: " + actor + "/n source: " + source + ", messages: " + messageId);
 		
-		MoveMessageRequestType request = OBJECT_FACTORY.createMoveMessageRequestType();
+		MoveMessageRequestType request = CONSULTATION_OBJECT_FACTORY.createMoveMessageRequestType();
 		request.setActor(actor);
 		request.setSource(source);
 		request.setDestination(destination);
-		request.setMessageId(messageId);
+		for (String id: messageId) {
+			request.getMessageId().add(id);
+		}
 		
-		JAXBElement<MoveMessageRequestType> requestCall = OBJECT_FACTORY.createMoveMessageRequest(request);
+		JAXBElement<MoveMessageRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createMoveMessageRequest(request);
 		
 		JAXBElement<MoveMessageResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<MoveMessageResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -180,23 +185,24 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public DeleteMessageResponseType deleteMessages(ActorType2 actor, String source, List<String> messageId) throws EJustBoxClientException, XmlMappingException, IOException {
+	public DeleteMessageResponseType deleteMessages(ActorType actor, String source, List<String> messageId) throws EJustBoxClientException, XmlMappingException, IOException {
 		
 		log.info("Requesting delete message for actor: " + actor + "/n source: " + source + ", messages: " + messageId);
 		
-		DeleteMessageRequestType request = OBJECT_FACTORY.createDeleteMessageRequestType();
+		DeleteMessageRequestType request = CONSULTATION_OBJECT_FACTORY.createDeleteMessageRequestType();
 		request.setActor(actor);
 		request.setSource(source);
-		request.setMessageId(messageId);
-		
-		JAXBElement<DeleteMessageRequestType> requestCall = OBJECT_FACTORY.createDeleteMessageRequest(request);
+		for (String id: messageId) {
+			request.getMessageId().add(id);
+		}
+		JAXBElement<DeleteMessageRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createDeleteMessageRequest(request);
 		
 		JAXBElement<DeleteMessageResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<DeleteMessageResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -212,24 +218,24 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public GetHistoryResponseType getHistory(ActorType2 actor, String source, String messageId)
+	public GetHistoryResponseType getHistory(ActorType actor, String source, String messageId)
 			throws EJustBoxClientException, XmlMappingException, IOException {
 		
 		log.info("Requesting get history for actor: " + actor + "/n source: " + source + ", message: " + messageId);
 		
-		MessageRequestType request = OBJECT_FACTORY.createMessageRequestType();
+		MessageRequestType request = CONSULTATION_OBJECT_FACTORY.createMessageRequestType();
 		request.setActor(actor);
 		request.setSource(source);
 		request.setMessageId(messageId);
 		
-		JAXBElement<MessageRequestType> requestCall = OBJECT_FACTORY.createGetHistoryRequest(request);
+		JAXBElement<MessageRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createGetHistoryRequest(request);
 		
 		JAXBElement<GetHistoryResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<GetHistoryResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
@@ -247,25 +253,25 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public GetMessageAcknowledgmentsStatusResponseType getMessageAcknowlegments(ActorType2 actor, String messageId,
+	public GetMessageAcknowledgmentsStatusResponseType getMessageAcknowlegments(ActorType actor, String messageId,
 			Integer startIndex, Integer endIndex) throws EJustBoxClientException, XmlMappingException, IOException {
 		
 		log.info("Requesting get message acknowlegments for actor: " + ", message: " + messageId + ", startIndex: " + startIndex + ", endIndex: " + endIndex);
 		
-		GetMessageAcknowledgmentsStatusRequestType request = OBJECT_FACTORY.createGetMessageAcknowledgmentsStatusRequestType();
+		GetMessageAcknowledgmentsStatusRequestType request = CONSULTATION_OBJECT_FACTORY.createGetMessageAcknowledgmentsStatusRequestType();
 		request.setActor(actor);
 		request.setMessageId(messageId);
 		request.setStartIndex(startIndex);
 		request.setEndIndex(endIndex);
 		
-		JAXBElement<GetMessageAcknowledgmentsStatusRequestType> requestCall = OBJECT_FACTORY.createGetMessageAcknowledgmentsStatusRequest(request);
+		JAXBElement<GetMessageAcknowledgmentsStatusRequestType> requestCall = CONSULTATION_OBJECT_FACTORY.createGetMessageAcknowledgmentsStatusRequest(request);
 		
 		JAXBElement<GetMessageAcknowledgmentsStatusResponseType> response = null;
 		
 		try {
 		
 			response = (JAXBElement<GetMessageAcknowledgmentsStatusResponseType>) getWebServiceTemplate()
-	           .marshalSendAndReceive(webServiceUrl, requestCall);
+	           .marshalSendAndReceive(consultationServiceUrl, requestCall);
 		
 		}
 		catch(SoapFaultClientException ex) {
