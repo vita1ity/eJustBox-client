@@ -95,4 +95,11 @@ public class GetBoxInfoRequestType {
         this.hasNewMessages = value;
     }
 
+	@Override
+	public String toString() {
+		return "GetBoxInfoRequestType [actor=" + actor + ", hasNewMessages=" + hasNewMessages + "]";
+	}
+    
+    
+
 }

@@ -127,4 +127,14 @@ public class GetFullMessageResponseType
         this.messageInfo = value;
     }
 
+	@Override
+	public String toString() {
+		return "GetFullMessageResponseType [sender=" + sender + ", message=" + message + ", messageInfo=" + messageInfo
+				+ ", status=" + status + ", id=" + id + ", inResponseTo=" + inResponseTo + ", issueInstant="
+				+ issueInstant + "]";
+	}
+    
+    
+    
+
 }

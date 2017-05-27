@@ -153,4 +153,13 @@ public class GetBoxInfoResponseType
         this.maxSize = value;
     }
 
+	@Override
+	public String toString() {
+		return "GetBoxInfoResponseType [nbrMessagesInStandBy=" + nbrMessagesInStandBy + ", nbrUnreadMessages="
+				+ nbrUnreadMessages + ", currentSize=" + currentSize + ", maxSize=" + maxSize + ", status=" + status
+				+ ", id=" + id + ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+    
+    
+
 }

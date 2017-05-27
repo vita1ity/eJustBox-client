@@ -361,6 +361,23 @@ public class GetMessageListResponseType
             return this.customMeta;
         }
 
+		@Override
+		public String toString() {
+			return "Message [messageId=" + messageId + ", destination=" + destination + ", sender=" + sender
+					+ ", messageInfo=" + messageInfo + ", contentInfo=" + contentInfo + ", contentSpecification="
+					+ contentSpecification + ", customMeta=" + customMeta + "]";
+		}
+        
+        
+
     }
+
+
+	@Override
+	public String toString() {
+		return "GetMessageListResponseType [source=" + source + ", message=" + message + ", status=" + status + ", id="
+				+ id + ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+    
 
 }

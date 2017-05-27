@@ -128,4 +128,12 @@ public class MessageInfoType {
         this.size = value;
     }
 
+	@Override
+	public String toString() {
+		return "MessageInfoType [publicationDate=" + publicationDate + ", expirationDate=" + expirationDate + ", size="
+				+ size + "]";
+	}
+    
+    
+
 }

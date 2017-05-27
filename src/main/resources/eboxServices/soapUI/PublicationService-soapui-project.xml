@@ -1,0 +1,1091 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="8dac0bb2-2fd3-4242-a134-8749a53e8997" activeEnvironment="Default" name="PublicationService" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="81b5308f-d306-4831-b472-73a94bb82c58" wsaVersion="NONE" name="eJustBoxPublicationBinding" type="wsdl" bindingName="{urn:be:fgov:ejustice:ejustbox:publication:protocol:v1}eJustBoxPublicationBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxPublicationService-1_0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxPublicationService-1_0.wsdl"><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxPublicationService-1_0.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ejustboxp="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:err="urn:be:fgov:ejustice:errors:service:v1" xmlns:mon="urn:be:fgov:ejustice:ejustbox:monitoring:protocol:v1" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s0="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:UsingPolicy s0:Required="true"/>
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" schemaLocation="../Schemas/ejustice-eJustBox-publication-schema-protocol-1_0.xsd"/>
+      <xsd:import namespace="urn:be:fgov:ejustice:errors:service:v1" schemaLocation="../Schemas/ejustice-errors/XSD/ejustice-errors-schema-service-1_0.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="SendMessageRequestMessage">
+    <part name="body" element="ejustboxp:SendMessageRequest"/>
+  </message>
+  <message name="SendMessageResponseMessage">
+    <part name="body" element="ejustboxp:SendMessageResponse"/>
+  </message>
+  <message name="SystemError">
+    <part name="fault" element="err:SystemError"/>
+  </message>
+  <message name="BusinessError">
+    <part name="fault" element="err:BusinessError"/>
+  </message>
+  <portType name="eJustBoxPublicationPortType">
+    <operation name="sendMessage">
+      <input message="ejustboxp:SendMessageRequestMessage"/>
+      <output message="ejustboxp:SendMessageResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+  </portType>
+  <binding name="eJustBoxPublicationBinding" type="ejustboxp:eJustBoxPublicationPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sendMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="eJustBoxPublicationService">
+    <port name="eJustBoxPublicationPort" binding="ejustboxp:eJustBoxPublicationBinding">
+      <soap:address location="http://localhost/ehBoxPublicationService"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-eJustBox-publication-schema-protocol-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:ejustboxp="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" xmlns:protocol="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ejustboxc="urn:be:fgov:ejustice:ejustbox:core:v1" xmlns:swaref="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:ns1="urn:be:fgov:ejustice:commons:core:v1">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:protocol:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-protocol-1_0.xsd"/>
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:import namespace="urn:be:fgov:ejustice:ejustbox:core:v1" schemaLocation="ejustice-eJustBox-schema-core-1_0.xsd"/>
+  <xs:import namespace="http://ws-i.org/profiles/basic/1.1/xsd" schemaLocation="swaref-3_0.xsd"/>
+  <xs:complexType name="DestinationContextType">
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:EJustboxIdentifierType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="OoOProcessed" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PublicationContentType">
+    <xs:annotation>
+      <xs:documentation>Contains all elements relative to the content of the message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Document" type="ejustboxp:PublicationDocumentType"/>
+      <xs:element name="EncryptableINSSPerson" type="xs:base64Binary" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Annex" type="ejustboxp:PublicationAnnexType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentSpecificationType">
+    <xs:annotation>
+      <xs:documentation>ContentSpecification for publication</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:ContentSpecificationType">
+        <xs:sequence>
+          <xs:annotation>
+            <xs:documentation>Allows you to specify separatly the desired acknowledgments</xs:documentation>
+          </xs:annotation>
+          <xs:element name="PublicationReceipt" type="xs:boolean" default="false"/>
+          <xs:element name="ReceivedReceipt" type="xs:boolean" default="false"/>
+          <xs:element name="ReadReceipt" type="xs:boolean" default="false"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ContentContextType">
+    <xs:sequence>
+      <xs:element name="Content" type="ejustboxp:PublicationContentType"/>
+      <xs:element name="ContentSpecification" type="ejustboxp:ContentSpecificationType"/>
+      <xs:element name="CustomMeta" type="ejustboxc:CustomMetaType" minOccurs="0" maxOccurs="50"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PublicationAnnexType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of an Annex</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EncryptableTitle" type="xs:base64Binary">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EncryptableContent" type="swaref:swaRef">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DownloadFileName">
+        <xs:annotation>
+          <xs:documentation>This is not encrypted</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MimeType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Digest" type="xs:string" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PublicationDocumentType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Document message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Title">
+        <xs:annotation>
+          <xs:documentation>This is not encrypted</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="400"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EncryptableContent">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:base64Binary">
+            <xs:maxLength value="1000000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PublicationMessageType">
+    <xs:annotation>
+      <xs:documentation>Publish a new encrypted or non-encrypted message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="DestinationContext" type="ejustboxp:DestinationContextType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Recipients</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContentContext" type="ejustboxp:ContentContextType">
+        <xs:annotation>
+          <xs:documentation>Message content and details</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Meta" type="ejustboxc:MetaType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>System Meta's defined by eJustice</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="PublicationId" type="ejustboxc:PublicationIdType"/>
+  </xs:complexType>
+  <xs:element name="SendMessageRequest" type="ejustboxp:PublicationMessageType"/>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="protocol:StatusResponseType">
+          <xs:sequence>
+            <xs:element name="SentPublicationId" type="ejustboxc:PublicationIdType"/>
+            <xs:element name="MessageId" type="ejustboxc:MessageIdType" minOccurs="0"/>
+            <xs:element name="Recipient" minOccurs="0" maxOccurs="unbounded">
+              <xs:annotation>
+                <xs:documentation>Recipients</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:complexContent>
+                  <xs:extension base="ejustboxc:EJustboxIdentifierType">
+                    <xs:sequence minOccurs="0">
+                      <xs:element name="AbsentFrom" type="xs:date"/>
+                      <xs:element name="AbsentTo" type="xs:date"/>
+                      <xs:element name="Substitute" type="ejustboxc:EJustboxIdentifierType" minOccurs="0" maxOccurs="unbounded">
+                        <xs:annotation>
+                          <xs:documentation>Recipients</xs:documentation>
+                        </xs:annotation>
+                      </xs:element>
+                    </xs:sequence>
+                  </xs:extension>
+                </xs:complexContent>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-commons/XSD/ejustice-commons-schema-protocol-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:commons:protocol:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:protocol="urn:be:fgov:ejustice:commons:protocol:v1">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:complexType name="RequestType">
+    <xs:annotation>
+      <xs:documentation>Basic eJustice SOA Request Type. eJustice Service Requests SHOULD extend from this element.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Id" type="xs:ID"/>
+    <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="AuthorRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require an Author as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:RequestType">
+        <xs:sequence>
+          <xs:element name="Author" type="core:AuthorType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require a Pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:RequestType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AuthorPaginationRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require an author and pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:AuthorRequestType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseType">
+    <xs:annotation>
+      <xs:documentation>Basic eJustice SOA Response Type. eJustice Service Responses SHOULD extend from this element.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Id" type="xs:ID" use="required"/>
+    <xs:attribute name="InResponseTo" type="xs:string"/>
+    <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="StatusResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Status as output.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:ResponseType">
+        <xs:sequence>
+          <xs:element ref="core:Status"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:ResponseType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationStatusResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Pagination as input and a Status as output.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:commons:core:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:swaref="http://ws-i.org/profiles/basic/1.1/xsd">
+  <xs:complexType name="ActorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the type of Actor</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:Id" maxOccurs="unbounded"/>
+      <xs:sequence>
+        <xs:element name="FirstName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="Name" type="xs:string"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Author" type="core:AuthorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the author of the message</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AuthorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the authorType of the message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="Id" type="core:IdType">
+    <xs:annotation>
+      <xs:documentation>Identifier</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="IdType">
+    <xs:annotation>
+      <xs:documentation>Type of Identifier.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Type" type="xs:anyURI" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:attributeGroup name="PaginationAttributeGroup">
+    <xs:attribute name="Offset" type="xs:int" use="required"/>
+    <xs:attribute name="MaxElements" type="xs:int" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Person" type="core:ActorType"/>
+  <xs:element name="Status" type="core:StatusType">
+    <xs:annotation>
+      <xs:documentation>Status of the requests</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="StatusCode" type="core:StatusCodeType"/>
+  <xs:complexType name="StatusCodeType">
+    <xs:annotation>
+      <xs:documentation>URI code of the status</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:StatusCode" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Value" type="xs:anyURI" use="required"/>
+  </xs:complexType>
+  <xs:element name="StatusDetail" type="core:StatusDetailType"/>
+  <xs:complexType name="StatusDetailType">
+    <xs:annotation>
+      <xs:documentation>Additional details of the status</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StatusMessage" type="xs:string"/>
+  <xs:complexType name="StatusType">
+    <xs:annotation>
+      <xs:documentation>StatusType of the requests</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:StatusCode"/>
+      <xs:element ref="core:StatusMessage" minOccurs="0"/>
+      <xs:element ref="core:StatusDetail" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-eJustBox-schema-core-1_0.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2016 sp1 (x64) (http://www.altova.com) by ﻿Smals vzw - Site SC (Smals vzw - Site SC)-->
+<xs:schema targetNamespace="urn:be:fgov:ejustice:ejustbox:core:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:ejustboxc="urn:be:fgov:ejustice:ejustbox:core:v1" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:simpleType name="INSSType">
+    <xs:annotation>
+      <xs:documentation>Social Security Number</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="11" fixed="true"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MessageIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number generated by the system</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="13" fixed="true"/>
+      <xs:pattern value="[a-zA-Z0-9]{13}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OoOIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number generated by the system</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PublicationIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number specified by the user</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Error notification</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="xs:string"/>
+      <xs:element name="Message" type="xs:string" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>English plain text explanation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element name="Destination" type="ejustboxc:EJustboxIdentifierType" maxOccurs="unbounded"/>
+        <xs:element name="Failure" type="xs:string" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>General purpose element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="PublicationId" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Unique number identifying the message in error.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="AcknowledgmentType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Acknowledgment notification</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType"/>
+      <xs:element name="Recipient" type="ejustboxc:EJustboxIdentifierType" minOccurs="0"/>
+      <xs:element name="AckType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PUBLISHED"/>
+            <xs:enumeration value="RECEIVED"/>
+            <xs:enumeration value="READ"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="DateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string"/>
+      <xs:element name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EJustboxIdentifierType">
+    <xs:annotation>
+      <xs:documentation>Recipient of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+          <xs:element name="User" minOccurs="0">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="ejustboxc:INSSType">
+                  <xs:attribute name="FirstName" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="LastName" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EJustboxSubstituteType">
+    <xs:annotation>
+      <xs:documentation>Recipient of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MetaType">
+    <xs:annotation>
+      <xs:documentation>Meta defined by the system</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Value" maxOccurs="unbounded">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomMetaType">
+    <xs:annotation>
+      <xs:documentation>Meta specified by the user</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Key">
+        <xs:annotation>
+          <xs:documentation>Limited to 250 characters</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Value">
+        <xs:annotation>
+          <xs:documentation>Limited to 250 characters</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentInfoType">
+    <xs:annotation>
+      <xs:documentation>Info about the message content, without transmitting everything</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EncryptableINSSPerson" type="xs:base64Binary" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Title">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="400"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MimeType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="HasAnnex" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentSpecificationType">
+    <xs:annotation>
+      <xs:documentation>ContentSpecification for consultation</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ApplicationName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Specifies the name of the sending application</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="25"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ContentType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="DOCUMENT"/>
+            <xs:enumeration value="NEWS"/>
+            <xs:enumeration value="ACKNOWLEDGMENT"/>
+            <xs:enumeration value="ERROR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="IsImportant" type="xs:boolean" default="false">
+        <xs:annotation>
+          <xs:documentation>V1 "HasPriority"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsEncrypted" type="xs:boolean" default="false">
+        <xs:annotation>
+          <xs:documentation>Indicates whether the "Encryptable" items ALL contain encrypted content</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageInfoType">
+    <xs:annotation>
+      <xs:documentation>Short message details</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PublicationDate" type="xs:date"/>
+      <xs:element name="ExpirationDate" type="xs:date"/>
+      <xs:element name="Size" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActorType">
+    <xs:annotation>
+      <xs:documentation>The sender of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="FirstName" type="xs:string" minOccurs="0"/>
+          <xs:element name="PersonInOrganisation" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>If the message was sent by an organisation, the organisation name will be stored in "Name" above and the INSS of the person really sending the message will be stored in "PersonInOrganisation" for
+                information.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/swaref-3_0.xsd</con:url><con:content><![CDATA[<!--Copyright (c) 2002-2004 by The Web Services-Interoperability Organization (WS-I) and 
+  Certain of its Members. All Rights Reserved.
+	
+  Notice
+  The material contained herein is not a license, either expressly or impliedly, to any 
+  intellectual property owned or controlled by any of the authors or developers of this 
+  material or WS-I. The material contained herein is provided on an "AS IS" basis and to 
+  the maximum extent permitted by applicable law, this material is provided AS IS AND WITH 
+  ALL FAULTS, and the authors and developers of this material and WS-I hereby disclaim all 
+  other warranties and conditions, either express, implied or statutory, including, but not 
+  limited to, any (if any) implied warranties, duties or conditions of  merchantability, 
+  of fitness for a particular purpose, of accuracy or completeness of responses, of results, 
+  of workmanlike effort, of lack of viruses, and of lack of negligence. ALSO, THERE IS NO 
+  WARRANTY OR CONDITION OF TITLE, QUIET ENJOYMENT, QUIET POSSESSION, CORRESPONDENCE TO 
+  DESCRIPTION OR NON-INFRINGEMENT WITH REGARD TO THIS MATERIAL.
+	
+  IN NO EVENT WILL ANY AUTHOR OR DEVELOPER OF THIS MATERIAL OR WS-I BE LIABLE TO ANY OTHER 
+  PARTY FOR THE COST OF PROCURING SUBSTITUTE GOODS OR SERVICES, LOST PROFITS, LOSS OF USE, 
+  LOSS OF DATA, OR ANY INCIDENTAL, CONSEQUENTIAL, DIRECT, INDIRECT, OR SPECIAL DAMAGES 
+  WHETHER UNDER CONTRACT, TORT, WARRANTY, OR OTHERWISE, ARISING IN ANY WAY OUT OF THIS OR 
+  ANY OTHER AGREEMENT RELATING TO THIS MATERIAL, WHETHER OR NOT SUCH PARTY HAD ADVANCE 
+  NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
+	
+  WS-I License Information
+  Use of this WS-I Material is governed by the WS-I Test License and other licenses.  Information on these 
+  licenses are contained in the README.txt and ReleaseNotes.txt files.  By downloading this file, you agree 
+  to the terms of these licenses.
+	
+  How To Provide Feedback
+  The Web Services-Interoperability Organization (WS-I) would like to receive input, 
+  suggestions and other feedback ("Feedback") on this work from a wide variety of 
+  industry participants to improve its quality over time. 
+	
+  By sending email, or otherwise communicating with WS-I, you (on behalf of yourself if 
+  you are an individual, and your company if you are providing Feedback on behalf of the 
+  company) will be deemed to have granted to WS-I, the members of WS-I, and other parties 
+  that have access to your Feedback, a non-exclusive, non-transferable, worldwide, perpetual, 
+  irrevocable, royalty-free license to use, disclose, copy, license, modify, sublicense or 
+  otherwise distribute and exploit in any manner whatsoever the Feedback you provide regarding 
+  the work. You acknowledge that you have no expectation of confidentiality with respect to 
+  any Feedback you provide. You represent and warrant that you have rights to provide this 
+  Feedback, and if you are providing Feedback on behalf of a company, you represent and warrant 
+  that you have the rights to provide Feedback on behalf of your company. You also acknowledge 
+  that WS-I is not required to review, discuss, use, consider or in any way incorporate your 
+  Feedback into future versions of its work. If WS-I does incorporate some or all of your 
+  Feedback in a future version of the work, it may, but is not obligated to include your name 
+  (or, if you are identified as acting on behalf of your company, the name of your company) on 
+  a list of contributors to the work. If the foregoing is not acceptable to you and any company 
+  on whose behalf you are acting, please do not provide any Feedback.
+	
+  Feedback on this document should be directed to wsi-test-comments@ws-i.org.-->
+<xsd:schema targetNamespace="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="swaRef">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-errors/XSD/ejustice-errors-schema-service-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:errors:service:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:see="urn:be:fgov:ejustice:errors:service:v1" xmlns:core="urn:be:fgov:ejustice:errors:core:v1">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">This schema describes the structure of an Error detail as it is
+      communicated by the SOA Service Component to the SOA Platform
+      Not all fields are communicated to the Consumer ! (This
+      error is transformed to
+      a SOA
+      Error)</xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="urn:be:fgov:ejustice:errors:core:v1" schemaLocation="ejustice-errors-schema-core-1_0.xsd"/>
+  <xs:element name="SystemError" type="see:SystemErrorType"/>
+  <xs:element name="BusinessError" type="see:BusinessErrorType"/>
+  <xs:complexType name="SystemErrorType">
+    <xs:annotation>
+      <xs:documentation>Type for SystemErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="see:ServiceErrorType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessErrorType">
+    <xs:annotation>
+      <xs:documentation>Type for BusinessErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="see:ServiceErrorType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceErrorType">
+    <xs:annotation>
+      <xs:documentation>Common Type for ServiceErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="core:ErrorType">
+        <xs:sequence>
+          <xs:element name="Actor" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The actor is the element - in the message path - which detected/generated the fault.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateTime" type="xs:dateTime"/>
+          <xs:element name="Trace" type="see:TraceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>could be a java stacktrace or any other kind of trace, used internally, to document on the cause of this error.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TraceType">
+    <xs:annotation>
+      <xs:documentation>StackTrace to cause of error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TraceElement" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-errors/XSD/ejustice-errors-schema-core-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:errors:core:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:errors:core:v1">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../../external/XSD/xml.xsd"/>
+  <xs:complexType name="LocalisedStringType">
+    <xs:annotation>
+      <xs:documentation>String of data in specified language.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="xml:lang" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Basic information on Error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Origin" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The component/party that is at the cause of the error: consumer or provider, client or server.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Code" type="xs:string"/>
+      <xs:element name="Message" type="core:LocalisedStringType" maxOccurs="unbounded"/>
+      <xs:element name="Retry" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Contact" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Unique number identifying this message.
+          If present, the ticket that was created for the client's request, leading to this Error, should be placed here.
+          Then this id can be used to trace back the message from request to
+          response.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/external/XSD/xml.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>See http://www.w3.org/XML/1998/namespace.html and
+   http://www.w3.org/TR/REC-xml for information about this namespace.
+
+    This schema document describes the XML namespace, in a form
+    suitable for import by other schema documents.  
+
+    Note that local names in this namespace are intended to be defined
+    only by the World Wide Web Consortium or its subgroups.  The
+    following names are currently defined in this namespace and should
+    not be used with conflicting semantics by any Working Group,
+    specification, or document instance:
+
+    base (as an attribute name): denotes an attribute whose value
+         provides a URI to be used as the base for interpreting any
+         relative URIs in the scope of the element on which it
+         appears; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML Base specification.
+
+    id   (as an attribute name): denotes an attribute whose value
+         should be interpreted as if declared to be of type ID.
+         This name is reserved by virtue of its definition in the
+         xml:id specification.
+
+    lang (as an attribute name): denotes an attribute whose value
+         is a language code for the natural language of the content of
+         any element; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML specification.
+  
+    space (as an attribute name): denotes an attribute whose
+         value is a keyword indicating what whitespace processing
+         discipline is intended for the content of the element; its
+         value is inherited.  This name is reserved by virtue of its
+         definition in the XML specification.
+
+    Father (in any context at all): denotes Jon Bosak, the chair of 
+         the original XML Working Group.  This name is reserved by 
+         the following decision of the W3C XML Plenary and 
+         XML Coordination groups:
+
+             In appreciation for his vision, leadership and dedication
+             the W3C XML Plenary on this 10th day of February, 2000
+             reserves for Jon Bosak in perpetuity the XML name
+             xml:Father</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>This schema defines attributes and an attribute group
+        suitable for use by
+        schemas wishing to allow xml:base, xml:lang, xml:space or xml:id
+        attributes on elements they define.
+
+        To enable this, such a schema must import this schema
+        for the XML namespace, e.g. as follows:
+        &lt;schema . . .>
+         . . .
+         &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+                    schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+        Subsequently, qualified reference to any of the attributes
+        or the group defined below will have the desired effect, e.g.
+
+        &lt;type . . .>
+         . . .
+         &lt;attributeGroup ref="xml:specialAttrs"/>
+ 
+         will define a type which will schema-validate an instance
+         element with any of those attributes</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>In keeping with the XML Schema WG's standard versioning
+   policy, this schema document will persist at
+   http://www.w3.org/2007/08/xml.xsd.
+   At the date of issue it can also be found at
+   http://www.w3.org/2001/xml.xsd.
+   The schema document at that URI may however change in the future,
+   in order to remain compatible with the latest version of XML Schema
+   itself, or with the XML namespace itself.  In other words, if the XML
+   Schema or XML namespaces change, the version of this document at
+   http://www.w3.org/2001/xml.xsd will change
+   accordingly; the version at
+   http://www.w3.org/2007/08/xml.xsd will not change.</xs:documentation>
+  </xs:annotation>
+  <xs:attribute name="lang">
+    <xs:annotation>
+      <xs:documentation>Attempting to install the relevant ISO 2- and 3-letter
+         codes as the enumerated possible values is probably never
+         going to be a realistic possibility.  See
+         RFC 3066 at http://www.ietf.org/rfc/rfc3066.txt and the IANA registry
+         at http://www.iana.org/assignments/lang-tag-apps.htm for
+         further information.
+
+         The union allows for the 'un-declaration' of xml:lang with
+         the empty string.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union memberTypes="xs:language">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value=""/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="space">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="default"/>
+        <xs:enumeration value="preserve"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="base" type="xs:anyURI">
+    <xs:annotation>
+      <xs:documentation>See http://www.w3.org/TR/xmlbase/ for
+                     information about this attribute.</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attribute name="id" type="xs:ID">
+    <xs:annotation>
+      <xs:documentation>See http://www.w3.org/TR/xml-id/ for
+                     information about this attribute.</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attributeGroup name="specialAttrs">
+    <xs:attribute ref="xml:base"/>
+    <xs:attribute ref="xml:lang"/>
+    <xs:attribute ref="xml:space"/>
+    <xs:attribute ref="xml:id"/>
+  </xs:attributeGroup>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost/ehBoxPublicationService</con:endpoint><con:endpoint>http://localhost:7101/1.00/CPS_PublicationService</con:endpoint><con:endpoint>http://localhost:8088/mockPublicationService</con:endpoint><con:endpoint>https://Davids-MacBook-Pro-2.local:8088/mockPublicationService</con:endpoint><con:endpoint>https://jsb-acc.just.fgov.be/1.00/CPS_PublicationService</con:endpoint></con:endpoints><con:operation id="e6881d30-e478-4931-915a-2d4386f0c2be" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage" name="sendMessage" bindingOperationName="sendMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="ea124597-203f-4291-b014-bccecd1c265f" name="Request 1" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockPublicationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SendMessageRequest PublicationId="1009927801393">
+         <Actor>
+            <Id>113703020000072</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+            <Name>Vredegerecht</Name>
+         </Actor>
+         <!--1 or more repetitions:-->
+         <DestinationContext>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+         </DestinationContext>
+         <ContentContext>
+            <Content>
+               <Document>
+                  <Title>Publicatie-dummy-voorbeeld</Title>
+                  <EncryptableContent>YmxhYmxh</EncryptableContent>
+               </Document>
+
+               <!--Zero or more repetitions:-->
+               <Annex>
+                  <EncryptableTitle>YmxhYmxh</EncryptableTitle>
+                  <EncryptableContent>cid:test.txt</EncryptableContent>
+                  <DownloadFileName>test.txt</DownloadFileName>
+                  <MimeType>text/plain</MimeType>
+                  <Digest>pe3KOluPtUrmHSNqUnRia6ajh4FXPgIgIAAVj6pwcZE=</Digest>
+               </Annex>
+
+            </Content>
+            <ContentSpecification>
+                <ContentType>DOCUMENT</ContentType>
+               <IsImportant>false</IsImportant>
+               <IsEncrypted>false</IsEncrypted>
+               <PublicationReceipt>true</PublicationReceipt>
+               <ReceivedReceipt>false</ReceivedReceipt>
+               <ReadReceipt>false</ReadReceipt>
+            </ContentSpecification>
+         </ContentContext>
+      </urn:SendMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:attachment><con:name>test.txt</con:name><con:contentType>text/plain</con:contentType><con:size>10</con:size><con:contentId>test.txt</con:contentId><con:data>UEsDBBQACAgIAIdU0EgAAAAAAAAAAAAAAAAIAAAAdGVzdC50eHRLyklMAiMuAFBLBwiKHBIbCAAAAAoAAABQSwECFAAUAAgICACHVNBIihwSGwgAAAAKAAAACAAAAAAAAAAAAAAAAAAAAAAAdGVzdC50eHRQSwUGAAAAAAEAAQA2AAAAPgAAAAAA</con:data><con:id>578b165e-242b-4946-b221-806a8be71110</con:id></con:attachment><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" messageID="" generateMessageId="true"/><con:wsrmConfig version="1.2"/></con:call><con:call id="c0e5a540-98d1-4b16-a5e0-f7ae24d6d548" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockPublicationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SendMessageRequest PublicationId="1009927801393">
+         <Actor>
+            <Id>113703020000072</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+            <Name>Vredegerecht</Name>
+         </Actor>
+         <!--1 or more repetitions:-->
+         <DestinationContext>
+            <Id>121000000000012</Id>
+            <Type>invalid</Type>
+            <Quality>invalid</Quality>
+         </DestinationContext>
+         <ContentContext>
+            <Content>
+               <Document>
+                  <Title>Publicatie-dummy-voorbeeld</Title>
+                  <EncryptableContent>YmxhYmxh</EncryptableContent>
+               </Document>
+
+               <!--Zero or more repetitions:-->
+               <Annex>
+                  <EncryptableTitle>YmxhYmxh</EncryptableTitle>
+                  <EncryptableContent>cid:test.txt</EncryptableContent>
+                  <DownloadFileName>test.txt</DownloadFileName>
+                  <MimeType>text/plain</MimeType>
+                  <Digest>pe3KOluPtUrmHSNqUnRia6ajh4FXPgIgIAAVj6pwcZE=</Digest>
+               </Annex>
+
+            </Content>
+            <ContentSpecification>
+                <ContentType>DOCUMENT</ContentType>
+               <IsImportant>false</IsImportant>
+               <IsEncrypted>false</IsEncrypted>
+               <PublicationReceipt>true</PublicationReceipt>
+               <ReceivedReceipt>false</ReceivedReceipt>
+               <ReadReceipt>false</ReadReceipt>
+            </ContentSpecification>
+         </ContentContext>
+      </urn:SendMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="0f9151f7-0abf-4b68-9463-c676ab644fae" port="8088" path="/mockPublicationService" host="Davids-MacBook-Pro-2.local" name="eJustBoxPublicationBinding MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="sendMessage" id="905efb14-4cff-4518-8c2d-71d71cb2aec6" interface="eJustBoxPublicationBinding" operation="sendMessage"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def type = requestXmlHolder["//DestinationContext[1]/Type"]
+def quality = requestXmlHolder["//DestinationContext[1]/Quality"]
+
+log.info type
+log.info quality
+
+if (type == 'invalid' || quality == 'invalid') {
+	return 'Response error'
+}
+else {
+	return 'Response OK'
+}
+</con:dispatchPath><con:response name="Response OK" id="af58be80-3c0a-48a0-916d-033bcd13d237" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:SendMessageResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+         <SentPublicationId>1009927801393</SentPublicationId>
+      </urn:SendMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage"/></con:response><con:response name="Response error" id="09677c3d-cbae-4e57-ae9b-e1a33f2f5935" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>The specified SubType is invalid; please verify that SubType is a subtype recognized by the system.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>805</Code>
+          <Message>The specified SubType is invalid; please verify that SubType is a subtype recognized by the system.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

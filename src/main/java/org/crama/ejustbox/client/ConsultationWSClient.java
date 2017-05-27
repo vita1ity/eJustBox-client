@@ -14,13 +14,14 @@ import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageAcknowledgme
 import be.fgov.ejustice.ejustbox.consultation.protocol.v1.GetMessageListResponseType;
 import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageResponseType;
 import be.fgov.ejustice.ejustbox.core.v1.ActorType;
+import be.fgov.ejustice.ejustbox.core.v1.CustomMetaType;
 
 public interface ConsultationWSClient {
 
 	GetBoxInfoResponseType getBoxInfo(ActorType actor) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
-	GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex) 
+	GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex, List<CustomMetaType> metaList) 
 			throws EJustBoxClientException, XmlMappingException, IOException;
 	
 	GetFullMessageResponseType getFullMessage(ActorType actor, String source, String messageId) 

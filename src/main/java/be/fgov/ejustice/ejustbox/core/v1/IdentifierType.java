@@ -100,4 +100,11 @@ public class IdentifierType {
         this.type = value;
     }
 
+	@Override
+	public String toString() {
+		return "IdentifierType [id=" + id + ", type=" + type + "]";
+	}
+
+    
+    
 }

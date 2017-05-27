@@ -199,4 +199,12 @@ public class ErrorType {
         this.publicationId = value;
     }
 
+	@Override
+	public String toString() {
+		return "ErrorType [code=" + code + ", message=" + message + ", destination=" + destination + ", failure="
+				+ failure + ", publicationId=" + publicationId + "]";
+	}
+    
+    
+
 }

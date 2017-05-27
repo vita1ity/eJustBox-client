@@ -105,4 +105,11 @@ public class RequestType {
         this.issueInstant = value;
     }
 
+	@Override
+	public String toString() {
+		return "RequestType [id=" + id + ", issueInstant=" + issueInstant + "]";
+	}
+
+    
+    
 }

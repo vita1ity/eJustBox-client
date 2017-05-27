@@ -117,4 +117,11 @@ public class MetaType {
         return this.value;
     }
 
+	@Override
+	public String toString() {
+		return "MetaType [type=" + type + ", value=" + value + "]";
+	}
+    
+    
+
 }

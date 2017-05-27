@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:ejustboxp="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:err="urn:be:fgov:ejustice:errors:service:v1"
+             xmlns:mon="urn:be:fgov:ejustice:ejustbox:monitoring:protocol:v1"
+             xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             targetNamespace="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:s0="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:error="http://jsb.belgium.be/errorHandling/error/v1_00">
+
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1"
+                  schemaLocation="../Schemas/ejustice-eJustBox-publication-schema-protocol-1_0.xsd"/>
+       <xsd:import namespace="http://jsb.belgium.be/errorHandling/error/v1_00" 
+                  schemaLocation="../../../UtilServices/Templating/V2.00/schemas/error.xsd"/>                  
+    </xsd:schema>
+  </types>
+
+  <message name="Fault">
+    <part name="fault" element="error:Fault" />
+  </message>
+  <message name="SendMessageRequestMessage">
+    <part name="body" element="ejustboxp:SendMessageRequest"/>
+  </message>
+  <message name="SendMessageResponseMessage">
+    <part name="body" element="ejustboxp:SendMessageResponse"/>
+  </message>
+
+  <portType name="eJustBoxPublicationPortType">
+    <operation name="sendMessage">
+      <input message="ejustboxp:SendMessageRequestMessage"/>
+      <output message="ejustboxp:SendMessageResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+  </portType>
+  <binding name="eJustBoxPublicationBinding" type="ejustboxp:eJustBoxPublicationPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sendMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:publication:protocol:v1:sendMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="eJustBoxPublicationService">
+    <port name="eJustBoxPublicationPort" binding="ejustboxp:eJustBoxPublicationBinding">
+      <soap:address location="http://localhost/ehBoxPublicationService"/>
+    </port>
+  </service>
+</definitions>

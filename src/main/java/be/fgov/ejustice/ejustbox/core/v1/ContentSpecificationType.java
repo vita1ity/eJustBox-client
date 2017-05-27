@@ -156,4 +156,12 @@ public class ContentSpecificationType {
         this.isEncrypted = value;
     }
 
+	@Override
+	public String toString() {
+		return "ContentSpecificationType [applicationName=" + applicationName + ", contentType=" + contentType
+				+ ", isImportant=" + isImportant + ", isEncrypted=" + isEncrypted + "]";
+	}
+    
+    
+
 }

@@ -163,4 +163,12 @@ public class GetMessageAcknowledgmentsStatusRequestType {
         this.endIndex = value;
     }
 
+	@Override
+	public String toString() {
+		return "GetMessageAcknowledgmentsStatusRequestType [actor=" + actor + ", messageId=" + messageId
+				+ ", startIndex=" + startIndex + ", endIndex=" + endIndex + "]";
+	}
+
+    
+    
 }

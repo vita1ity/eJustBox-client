@@ -1,0 +1,2553 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="5743e7e1-d965-4082-a1e7-733445b7773a" activeEnvironment="Default" name="ConsultationService" resourceRoot="" soapui-version="5.3.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="7589581f-5ccc-4d8b-8269-3b95dffe612f" wsaVersion="NONE" name="eJustBoxConsultationBinding" type="wsdl" bindingName="{urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1}eJustBoxConsultationBinding" soapVersion="1_1" anonymous="optional" definition="file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxConsultationService-1_0.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxConsultationService-1_0.wsdl"><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Wsdl/eJustBoxConsultationService-1_0.wsdl</con:url><con:content><![CDATA[<definitions targetNamespace="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ejustboxp="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:err="urn:be:fgov:ejustice:errors:service:v1" xmlns:mon="urn:be:fgov:ejustice:ejustbox:monitoring:protocol:v1" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:s0="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" schemaLocation="../Schemas/ejustice-eJustBox-consultation-schema-protocol-1_0.xsd"/>
+      <xsd:import namespace="urn:be:fgov:ejustice:errors:service:v1" schemaLocation="../Schemas/ejustice-errors/XSD/ejustice-errors-schema-service-1_0.xsd"/>
+    </xsd:schema>
+  </types>
+  <message name="GetBoxInfoRequestMessage">
+    <part name="body" element="ejustboxp:GetBoxInfoRequest"/>
+  </message>
+  <message name="GetBoxInfoResponseMessage">
+    <part name="body" element="ejustboxp:GetBoxInfoResponse"/>
+  </message>
+  <message name="GetMessagesListRequestMessage">
+    <part name="body" element="ejustboxp:GetMessagesListRequest"/>
+  </message>
+  <message name="GetMessagesListResponseMessage">
+    <part name="body" element="ejustboxp:GetMessagesListResponse"/>
+  </message>
+  <message name="GetFullMessageRequestMessage">
+    <part name="body" element="ejustboxp:GetFullMessageRequest"/>
+  </message>
+  <message name="GetFullMessageResponseMessage">
+    <part name="body" element="ejustboxp:GetFullMessageResponse"/>
+  </message>
+  <message name="MoveMessageRequestMessage">
+    <part name="body" element="ejustboxp:MoveMessageRequest"/>
+  </message>
+  <message name="DeleteMessageRequestMessage">
+    <part name="body" element="ejustboxp:DeleteMessageRequest"/>
+  </message>
+  <message name="MoveMessageResponseMessage">
+    <part name="body" element="ejustboxp:MoveMessageResponse"/>
+  </message>
+  <message name="DeleteMessageResponseMessage">
+    <part name="body" element="ejustboxp:DeleteMessageResponse"/>
+  </message>
+  <message name="GetMessageHistoryRequestMessage">
+    <part name="body" element="ejustboxp:GetHistoryRequest"/>
+  </message>
+  <message name="GetMessageHistoryResponseMessage">
+    <part name="body" element="ejustboxp:GetHistoryResponse"/>
+  </message>
+  <message name="GetMessageAcknowledgmentsStatusRequestMessage">
+    <part name="body" element="ejustboxp:GetMessageAcknowledgmentsStatusRequest"/>
+  </message>
+  <message name="GetMessageAcknowledgmentsStatusResponseMessage">
+    <part name="body" element="ejustboxp:GetMessageAcknowledgmentsStatusResponse"/>
+  </message>
+  <message name="InsertOoORequestMessage">
+    <part name="body" element="ejustboxp:InsertOoORequest"/>
+  </message>
+  <message name="InsertOoOResponseMessage">
+    <part name="body" element="ejustboxp:InsertOoOResponse"/>
+  </message>
+  <message name="DeleteOoORequestMessage">
+    <part name="body" element="ejustboxp:DeleteOoORequest"/>
+  </message>
+  <message name="DeleteOoOResponseMessage">
+    <part name="body" element="ejustboxp:DeleteOoOResponse"/>
+  </message>
+  <message name="GetOoOListRequestMessage">
+    <part name="body" element="ejustboxp:GetOoOListRequest"/>
+  </message>
+  <message name="GetOoOListResponseMessage">
+    <part name="body" element="ejustboxp:GetOoOListResponse"/>
+  </message>
+  <message name="SystemError">
+    <part name="fault" element="err:SystemError"/>
+  </message>
+  <message name="BusinessError">
+    <part name="fault" element="err:BusinessError"/>
+  </message>
+  <portType name="eJustBoxConsultationPortType">
+    <operation name="getBoxInfo">
+      <input message="ejustboxp:GetBoxInfoRequestMessage"/>
+      <output message="ejustboxp:GetBoxInfoResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="getMessagesList">
+      <input message="ejustboxp:GetMessagesListRequestMessage"/>
+      <output message="ejustboxp:GetMessagesListResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="getFullMessage">
+      <input message="ejustboxp:GetFullMessageRequestMessage"/>
+      <output message="ejustboxp:GetFullMessageResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="moveMessage">
+      <input message="ejustboxp:MoveMessageRequestMessage"/>
+      <output message="ejustboxp:MoveMessageResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="deleteMessage">
+      <input message="ejustboxp:DeleteMessageRequestMessage"/>
+      <output message="ejustboxp:DeleteMessageResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="getMessageHistory">
+      <input message="ejustboxp:GetMessageHistoryRequestMessage"/>
+      <output message="ejustboxp:GetMessageHistoryResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="getMessageAcknowledgmentsStatus">
+      <input message="ejustboxp:GetMessageAcknowledgmentsStatusRequestMessage"/>
+      <output message="ejustboxp:GetMessageAcknowledgmentsStatusResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="insertOoO">
+      <input message="ejustboxp:InsertOoORequestMessage"/>
+      <output message="ejustboxp:InsertOoOResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="deleteOoO">
+      <input message="ejustboxp:DeleteOoORequestMessage"/>
+      <output message="ejustboxp:DeleteOoOResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+    <operation name="getOoOList">
+      <input message="ejustboxp:GetOoOListRequestMessage"/>
+      <output message="ejustboxp:GetOoOListResponseMessage"/>
+      <fault name="BusinessError" message="ejustboxp:BusinessError"/>
+      <fault name="SystemError" message="ejustboxp:SystemError"/>
+    </operation>
+  </portType>
+  <binding name="eJustBoxConsultationBinding" type="ejustboxp:eJustBoxConsultationPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getBoxInfo">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getBoxInfo"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessagesList">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFullMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="moveMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="deleteMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessageHistory">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessageAcknowledgmentsStatus">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="insertOoO">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:insertOoO"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="deleteOoO">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteOoO"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getOoOList">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getOoOList"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="BusinessError">
+        <soap:fault name="BusinessError" use="literal"/>
+      </fault>
+      <fault name="SystemError">
+        <soap:fault name="SystemError" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="eJustBoxConsultationService">
+    <port name="eJustBoxConsultationPort" binding="ejustboxp:eJustBoxConsultationBinding">
+      <soap:address location="http://localhost/eJustBoxConsultationService"/>
+    </port>
+  </service>
+  <!--technical monitoring methods-->
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-eJustBox-consultation-schema-protocol-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:consultp="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:protocol="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ejustboxc="urn:be:fgov:ejustice:ejustbox:core:v1" xmlns:swaref="http://ws-i.org/profiles/basic/1.1/xsd">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:protocol:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-protocol-1_0.xsd"/>
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:import namespace="urn:be:fgov:ejustice:ejustbox:core:v1" schemaLocation="ejustice-eJustBox-schema-core-1_0.xsd"/>
+  <xs:import namespace="http://ws-i.org/profiles/basic/1.1/xsd" schemaLocation="swaref-3_0.xsd"/>
+  <!--| Request Elements.-->
+  <xs:element name="GetBoxInfoRequest" type="consultp:GetBoxInfoRequestType"/>
+  <xs:element name="GetMessagesListRequest" type="consultp:GetMessagesListRequestType"/>
+  <xs:element name="GetAllejustboxesMessagesListRequest" type="consultp:GetAllejustboxesMessagesListRequestType"/>
+  <xs:element name="GetFullMessageRequest" type="consultp:MessageRequestType"/>
+  <xs:element name="MoveMessageRequest" type="consultp:MoveMessageRequestType"/>
+  <xs:element name="DeleteMessageRequest" type="consultp:DeleteMessageRequestType"/>
+  <xs:element name="GetHistoryRequest" type="consultp:MessageRequestType"/>
+  <xs:element name="GetMessageAcknowledgmentsStatusRequest" type="consultp:GetMessageAcknowledgmentsStatusRequestType"/>
+  <xs:element name="InsertOoORequest" type="consultp:InsertOoORequestType"/>
+  <xs:element name="DeleteOoORequest" type="consultp:DeleteOoORequestType"/>
+  <xs:element name="GetOoOListRequest" type="consultp:GetOoOListRequestType"/>
+  <!--| Response Elements.-->
+  <xs:element name="GetBoxInfoResponse" type="consultp:GetBoxInfoResponseType"/>
+  <xs:element name="GetMessagesListResponse" type="consultp:GetMessageListResponseType"/>
+  <xs:element name="GetAllejustboxesMessagesListResponse" type="consultp:GetMessageListResponseType"/>
+  <xs:element name="GetFullMessageResponse" type="consultp:GetFullMessageResponseType"/>
+  <xs:element name="MoveMessageResponse" type="consultp:MoveMessageResponseType"/>
+  <xs:element name="DeleteMessageResponse" type="consultp:DeleteMessageResponseType"/>
+  <xs:element name="GetHistoryResponse" type="consultp:GetHistoryResponseType"/>
+  <xs:element name="GetMessageAcknowledgmentsStatusResponse" type="consultp:GetMessageAcknowledgmentsStatusResponseType"/>
+  <xs:element name="InsertOoOResponse" type="consultp:InsertOoOResponseType"/>
+  <xs:element name="DeleteOoOResponse" type="consultp:DeleteOoOResponseType"/>
+  <xs:element name="GetOoOListResponse" type="consultp:GetOoOListResponseType"/>
+  <!--| Request Types.-->
+  <xs:complexType name="GetBoxInfoRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="HasNewMessages" type="xs:boolean" default="false" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetMessagesListRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="Source" default="INBOX">
+        <xs:annotation>
+          <xs:documentation>The folder to consult</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+            <xs:enumeration value="BININBOX"/>
+            <xs:enumeration value="BINSENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="StartIndex" default="1" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the first message</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EndIndex" default="100" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the last message</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="CustomMeta" type="ejustboxc:CustomMetaType" minOccurs="0" maxOccurs="50"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetAllejustboxesMessagesListRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="Source" default="INBOX">
+        <xs:annotation>
+          <xs:documentation>The folder to consult</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+            <xs:enumeration value="BININBOX"/>
+            <xs:enumeration value="BINSENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="StartIndex" default="1" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the first message</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EndIndex" default="100" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the last message</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="Source" default="INBOX">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MoveMessageRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="Source">
+        <xs:annotation>
+          <xs:documentation>User specifies where the message must be moved from</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+            <xs:enumeration value="BININBOX"/>
+            <xs:enumeration value="BINSENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Destination">
+        <xs:annotation>
+          <xs:documentation>User specifies where the message must be placed</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+            <xs:enumeration value="BININBOX"/>
+            <xs:enumeration value="BINSENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>User can specify many messageId's</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeleteMessageRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="Source">
+        <xs:annotation>
+          <xs:documentation>User specifies where the message must be deleted from</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INBOX"/>
+            <xs:enumeration value="SENTBOX"/>
+            <xs:enumeration value="BININBOX"/>
+            <xs:enumeration value="BINSENTBOX"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>User can specify many messageId's</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetMessageAcknowledgmentsStatusRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType"/>
+      <xs:element name="StartIndex" default="1" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the first acknowledgment</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EndIndex" default="100" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Index of the last acknowledgment</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:int">
+            <xs:minInclusive value="1"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="InsertOoORequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="StartDate" type="xs:date"/>
+      <xs:element name="EndDate" type="xs:date"/>
+      <xs:element name="Substitute" type="ejustboxc:EJustboxSubstituteType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Recipients</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeleteOoORequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+      <xs:element name="OoOId" type="ejustboxc:OoOIdType" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="GetOoOListRequestType">
+    <xs:sequence>
+      <xs:element name="Actor" type="ejustboxc:ActorType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--| Response Types.-->
+  <xs:complexType name="GetBoxInfoResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="NbrMessagesInStandBy" type="xs:int"/>
+          <xs:element name="NbrUnreadMessages" type="xs:int"/>
+          <xs:element name="CurrentSize" type="xs:long"/>
+          <xs:element name="MaxSize" type="xs:long"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GetMessageListResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="Source">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:enumeration value="INBOX"/>
+                <xs:enumeration value="SENTBOX"/>
+                <xs:enumeration value="BININBOX"/>
+                <xs:enumeration value="BINSENTBOX"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="Message" minOccurs="0" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="MessageId" type="ejustboxc:MessageIdType"/>
+                <xs:element name="Destination" type="ejustboxc:IdentifierType">
+                  <xs:annotation>
+                    <xs:documentation>This indicates which of my ejustboxes received the message. This doesn't display all the recipients, only me.</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="Sender" type="ejustboxc:ActorType">
+                  <xs:annotation>
+                    <xs:documentation>The official sender of the message</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="MessageInfo" type="ejustboxc:MessageInfoType">
+                  <xs:annotation>
+                    <xs:documentation>Short message details</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="ContentInfo" type="ejustboxc:ContentInfoType" minOccurs="0">
+                  <xs:annotation>
+                    <xs:documentation>Info about the message content, without transmitting everything</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+                <xs:element name="ContentSpecification" type="ejustboxc:ContentSpecificationType"/>
+                <xs:element name="CustomMeta" type="ejustboxc:CustomMetaType" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:documentation>Meta specified by the user</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GetFullMessageResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="Sender" type="ejustboxc:ActorType">
+            <xs:annotation>
+              <xs:documentation>The official sender of the message</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="Message" type="consultp:ConsultationMessageType"/>
+          <xs:element name="MessageInfo" type="ejustboxc:MessageInfoType">
+            <xs:annotation>
+              <xs:documentation>Short message details</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GetHistoryResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="MessageId" type="ejustboxc:MessageIdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MoveMessageResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="MessageId" type="ejustboxc:MessageIdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteMessageResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="MessageId" type="ejustboxc:MessageIdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GetMessageAcknowledgmentsStatusResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="AcknowledgmentsStatus">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Row" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:sequence>
+                      <xs:element name="Recipient" type="ejustboxc:EJustboxIdentifierType"/>
+                      <xs:element name="Published" type="xs:dateTime" minOccurs="0"/>
+                      <xs:element name="Received" type="xs:dateTime" minOccurs="0"/>
+                      <xs:element name="Read" type="xs:dateTime" minOccurs="0"/>
+                    </xs:sequence>
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="InsertOoOResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="OoOId" type="ejustboxc:OoOIdType" minOccurs="0"/>
+          <xs:element name="Substitute" type="consultp:SubstituteType" minOccurs="0" maxOccurs="unbounded">
+            <xs:annotation>
+              <xs:documentation>Recipients</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="DeleteOoOResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="OoOId" type="ejustboxc:OoOIdType" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="GetOoOListResponseType">
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:sequence minOccurs="0">
+          <xs:element name="OoO" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="OoOId" type="ejustboxc:OoOIdType"/>
+                <xs:element name="StartDate" type="xs:date"/>
+                <xs:element name="EndDate" type="xs:date"/>
+                <xs:element name="Substitute" type="ejustboxc:EJustboxSubstituteType" minOccurs="0" maxOccurs="unbounded">
+                  <xs:annotation>
+                    <xs:documentation>Recipients</xs:documentation>
+                  </xs:annotation>
+                </xs:element>
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="SubstituteType">
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:EJustboxSubstituteType">
+        <xs:sequence>
+          <xs:element name="AbsentFrom" type="xs:date" minOccurs="0"/>
+          <xs:element name="AbsentTo" type="xs:date" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <!--<xs:complexType name="DestinationContextType">
+		<xs:complexContent>
+			<xs:extension base="core:IdentifierType"/>
+		</xs:complexContent>
+	</xs:complexType>-->
+  <xs:complexType name="ConsultationContentType">
+    <xs:annotation>
+      <xs:documentation>Contains all elements relative to the content of the message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Document" type="consultp:ConsultationDocumentType"/>
+      <xs:element name="EncryptableINSSPerson" type="xs:base64Binary" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Annex" type="consultp:ConsultationAnnexType" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Acknowledgment" type="ejustboxc:AcknowledgmentType" minOccurs="0"/>
+      <xs:element name="Error" type="ejustboxc:ErrorType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentContextType">
+    <xs:sequence>
+      <xs:element name="Content" type="consultp:ConsultationContentType"/>
+      <xs:element name="ContentSpecification" type="ejustboxc:ContentSpecificationType"/>
+      <xs:element name="CustomMeta" type="ejustboxc:CustomMetaType" minOccurs="0" maxOccurs="50"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsultationAnnexType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of an Annex</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EncryptableTitle" type="xs:base64Binary">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EncryptableContent" type="swaref:swaRef">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DownloadFileName">
+        <xs:annotation>
+          <xs:documentation>This is not encrypted</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MimeType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsultationDocumentType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Document message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Title">
+        <xs:annotation>
+          <xs:documentation>This is not encrypted</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="400"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="EncryptableContent">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content. Anyway it must be converted to base64Binary</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:base64Binary">
+            <xs:maxLength value="1000000"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ConsultationMessageType">
+    <xs:annotation>
+      <xs:documentation>Get a message with it's content</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PublicationId" type="ejustboxc:PublicationIdType" minOccurs="0"/>
+      <xs:element name="DestinationContext" type="ejustboxc:EJustboxIdentifierType" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Recipients</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ContentContext" type="consultp:ContentContextType">
+        <xs:annotation>
+          <xs:documentation>Message content and details, as well as some free Meta’s</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Meta" type="ejustboxc:MetaType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>System Meta's defined by eHealth</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="MessageId" type="ejustboxc:MessageIdType"/>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-commons/XSD/ejustice-commons-schema-protocol-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:commons:protocol:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:protocol="urn:be:fgov:ejustice:commons:protocol:v1">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:complexType name="RequestType">
+    <xs:annotation>
+      <xs:documentation>Basic eJustice SOA Request Type. eJustice Service Requests SHOULD extend from this element.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Id" type="xs:ID"/>
+    <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="AuthorRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require an Author as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:RequestType">
+        <xs:sequence>
+          <xs:element name="Author" type="core:AuthorType"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require a Pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:RequestType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="AuthorPaginationRequestType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Request Type for Services that require an author and pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:AuthorRequestType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseType">
+    <xs:annotation>
+      <xs:documentation>Basic eJustice SOA Response Type. eJustice Service Responses SHOULD extend from this element.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="Id" type="xs:ID" use="required"/>
+    <xs:attribute name="InResponseTo" type="xs:string"/>
+    <xs:attribute name="IssueInstant" type="xs:dateTime" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="StatusResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Status as output.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:ResponseType">
+        <xs:sequence>
+          <xs:element ref="core:Status"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Pagination as input.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:ResponseType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PaginationStatusResponseType">
+    <xs:annotation>
+      <xs:documentation>eJustice SOA Response Type for Services that require a Pagination as input and a Status as output.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="protocol:StatusResponseType">
+        <xs:attributeGroup ref="core:PaginationAttributeGroup"/>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:commons:core:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:swaref="http://ws-i.org/profiles/basic/1.1/xsd">
+  <xs:complexType name="ActorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the type of Actor</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:Id" maxOccurs="unbounded"/>
+      <xs:sequence>
+        <xs:element name="FirstName" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="Name" type="xs:string"/>
+      </xs:sequence>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Author" type="core:AuthorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the author of the message</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="AuthorType">
+    <xs:annotation>
+      <xs:documentation>Identifies the authorType of the message</xs:documentation>
+    </xs:annotation>
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:element name="Id" type="core:IdType">
+    <xs:annotation>
+      <xs:documentation>Identifier</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="IdType">
+    <xs:annotation>
+      <xs:documentation>Type of Identifier.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="Type" type="xs:anyURI" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:attributeGroup name="PaginationAttributeGroup">
+    <xs:attribute name="Offset" type="xs:int" use="required"/>
+    <xs:attribute name="MaxElements" type="xs:int" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="Person" type="core:ActorType"/>
+  <xs:element name="Status" type="core:StatusType">
+    <xs:annotation>
+      <xs:documentation>Status of the requests</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="StatusCode" type="core:StatusCodeType"/>
+  <xs:complexType name="StatusCodeType">
+    <xs:annotation>
+      <xs:documentation>URI code of the status</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:StatusCode" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Value" type="xs:anyURI" use="required"/>
+  </xs:complexType>
+  <xs:element name="StatusDetail" type="core:StatusDetailType"/>
+  <xs:complexType name="StatusDetailType">
+    <xs:annotation>
+      <xs:documentation>Additional details of the status</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:any namespace="##any" processContents="strict" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StatusMessage" type="xs:string"/>
+  <xs:complexType name="StatusType">
+    <xs:annotation>
+      <xs:documentation>StatusType of the requests</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="core:StatusCode"/>
+      <xs:element ref="core:StatusMessage" minOccurs="0"/>
+      <xs:element ref="core:StatusDetail" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-eJustBox-schema-core-1_0.xsd</con:url><con:content><![CDATA[<!--edited with XMLSpy v2016 sp1 (x64) (http://www.altova.com) by ﻿Smals vzw - Site SC (Smals vzw - Site SC)-->
+<xs:schema targetNamespace="urn:be:fgov:ejustice:ejustbox:core:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:commons:core:v1" xmlns:ejustboxc="urn:be:fgov:ejustice:ejustbox:core:v1" xmlns:xmime="http://www.w3.org/2005/05/xmlmime">
+  <xs:import namespace="urn:be:fgov:ejustice:commons:core:v1" schemaLocation="ejustice-commons/XSD/ejustice-commons-schema-core-1_0.xsd"/>
+  <xs:simpleType name="INSSType">
+    <xs:annotation>
+      <xs:documentation>Social Security Number</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="11" fixed="true"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="MessageIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number generated by the system</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:length value="13" fixed="true"/>
+      <xs:pattern value="[a-zA-Z0-9]{13}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="OoOIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number generated by the system</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="PublicationIdType">
+    <xs:annotation>
+      <xs:documentation>Unique number specified by the user</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="13"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Error notification</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Code" type="xs:string"/>
+      <xs:element name="Message" type="xs:string" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>English plain text explanation</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0">
+        <xs:element name="Destination" type="ejustboxc:EJustboxIdentifierType" maxOccurs="unbounded"/>
+        <xs:element name="Failure" type="xs:string" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>General purpose element</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="PublicationId" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Unique number identifying the message in error.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="AcknowledgmentType">
+    <xs:annotation>
+      <xs:documentation>Specifies content of a Acknowledgment notification</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="MessageId" type="ejustboxc:MessageIdType"/>
+      <xs:element name="Recipient" type="ejustboxc:EJustboxIdentifierType" minOccurs="0"/>
+      <xs:element name="AckType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PUBLISHED"/>
+            <xs:enumeration value="RECEIVED"/>
+            <xs:enumeration value="READ"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="DateTime" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifierType">
+    <xs:sequence>
+      <xs:element name="Id" type="xs:string"/>
+      <xs:element name="Type" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EJustboxIdentifierType">
+    <xs:annotation>
+      <xs:documentation>Recipient of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+          <xs:element name="User" minOccurs="0">
+            <xs:complexType>
+              <xs:simpleContent>
+                <xs:extension base="ejustboxc:INSSType">
+                  <xs:attribute name="FirstName" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                  <xs:attribute name="LastName" use="required">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:string">
+                        <xs:minLength value="1"/>
+                        <xs:maxLength value="100"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                  </xs:attribute>
+                </xs:extension>
+              </xs:simpleContent>
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EJustboxSubstituteType">
+    <xs:annotation>
+      <xs:documentation>Recipient of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MetaType">
+    <xs:annotation>
+      <xs:documentation>Meta defined by the system</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Type">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Value" maxOccurs="unbounded">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="CustomMetaType">
+    <xs:annotation>
+      <xs:documentation>Meta specified by the user</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Key">
+        <xs:annotation>
+          <xs:documentation>Limited to 250 characters</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Value">
+        <xs:annotation>
+          <xs:documentation>Limited to 250 characters</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="250"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentInfoType">
+    <xs:annotation>
+      <xs:documentation>Info about the message content, without transmitting everything</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="EncryptableINSSPerson" type="xs:base64Binary" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If IsEncrypted == True, this MUST contain encrypted content.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Title">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="400"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="MimeType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="HasAnnex" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ContentSpecificationType">
+    <xs:annotation>
+      <xs:documentation>ContentSpecification for consultation</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="ApplicationName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Specifies the name of the sending application</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+            <xs:maxLength value="25"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="ContentType">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="DOCUMENT"/>
+            <xs:enumeration value="NEWS"/>
+            <xs:enumeration value="ACKNOWLEDGMENT"/>
+            <xs:enumeration value="ERROR"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="IsImportant" type="xs:boolean" default="false">
+        <xs:annotation>
+          <xs:documentation>V1 "HasPriority"</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="IsEncrypted" type="xs:boolean" default="false">
+        <xs:annotation>
+          <xs:documentation>Indicates whether the "Encryptable" items ALL contain encrypted content</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MessageInfoType">
+    <xs:annotation>
+      <xs:documentation>Short message details</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="PublicationDate" type="xs:date"/>
+      <xs:element name="ExpirationDate" type="xs:date"/>
+      <xs:element name="Size" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActorType">
+    <xs:annotation>
+      <xs:documentation>The sender of a message</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="ejustboxc:IdentifierType">
+        <xs:sequence>
+          <xs:element name="Quality" type="xs:string"/>
+          <xs:element name="Name" type="xs:string"/>
+          <xs:element name="FirstName" type="xs:string" minOccurs="0"/>
+          <xs:element name="PersonInOrganisation" type="xs:string" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>If the message was sent by an organisation, the organisation name will be stored in "Name" above and the INSS of the person really sending the message will be stored in "PersonInOrganisation" for
+                information.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/swaref-3_0.xsd</con:url><con:content><![CDATA[<!--Copyright (c) 2002-2004 by The Web Services-Interoperability Organization (WS-I) and 
+  Certain of its Members. All Rights Reserved.
+	
+  Notice
+  The material contained herein is not a license, either expressly or impliedly, to any 
+  intellectual property owned or controlled by any of the authors or developers of this 
+  material or WS-I. The material contained herein is provided on an "AS IS" basis and to 
+  the maximum extent permitted by applicable law, this material is provided AS IS AND WITH 
+  ALL FAULTS, and the authors and developers of this material and WS-I hereby disclaim all 
+  other warranties and conditions, either express, implied or statutory, including, but not 
+  limited to, any (if any) implied warranties, duties or conditions of  merchantability, 
+  of fitness for a particular purpose, of accuracy or completeness of responses, of results, 
+  of workmanlike effort, of lack of viruses, and of lack of negligence. ALSO, THERE IS NO 
+  WARRANTY OR CONDITION OF TITLE, QUIET ENJOYMENT, QUIET POSSESSION, CORRESPONDENCE TO 
+  DESCRIPTION OR NON-INFRINGEMENT WITH REGARD TO THIS MATERIAL.
+	
+  IN NO EVENT WILL ANY AUTHOR OR DEVELOPER OF THIS MATERIAL OR WS-I BE LIABLE TO ANY OTHER 
+  PARTY FOR THE COST OF PROCURING SUBSTITUTE GOODS OR SERVICES, LOST PROFITS, LOSS OF USE, 
+  LOSS OF DATA, OR ANY INCIDENTAL, CONSEQUENTIAL, DIRECT, INDIRECT, OR SPECIAL DAMAGES 
+  WHETHER UNDER CONTRACT, TORT, WARRANTY, OR OTHERWISE, ARISING IN ANY WAY OUT OF THIS OR 
+  ANY OTHER AGREEMENT RELATING TO THIS MATERIAL, WHETHER OR NOT SUCH PARTY HAD ADVANCE 
+  NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
+	
+  WS-I License Information
+  Use of this WS-I Material is governed by the WS-I Test License and other licenses.  Information on these 
+  licenses are contained in the README.txt and ReleaseNotes.txt files.  By downloading this file, you agree 
+  to the terms of these licenses.
+	
+  How To Provide Feedback
+  The Web Services-Interoperability Organization (WS-I) would like to receive input, 
+  suggestions and other feedback ("Feedback") on this work from a wide variety of 
+  industry participants to improve its quality over time. 
+	
+  By sending email, or otherwise communicating with WS-I, you (on behalf of yourself if 
+  you are an individual, and your company if you are providing Feedback on behalf of the 
+  company) will be deemed to have granted to WS-I, the members of WS-I, and other parties 
+  that have access to your Feedback, a non-exclusive, non-transferable, worldwide, perpetual, 
+  irrevocable, royalty-free license to use, disclose, copy, license, modify, sublicense or 
+  otherwise distribute and exploit in any manner whatsoever the Feedback you provide regarding 
+  the work. You acknowledge that you have no expectation of confidentiality with respect to 
+  any Feedback you provide. You represent and warrant that you have rights to provide this 
+  Feedback, and if you are providing Feedback on behalf of a company, you represent and warrant 
+  that you have the rights to provide Feedback on behalf of your company. You also acknowledge 
+  that WS-I is not required to review, discuss, use, consider or in any way incorporate your 
+  Feedback into future versions of its work. If WS-I does incorporate some or all of your 
+  Feedback in a future version of the work, it may, but is not obligated to include your name 
+  (or, if you are identified as acting on behalf of your company, the name of your company) on 
+  a list of contributors to the work. If the foregoing is not acceptable to you and any company 
+  on whose behalf you are acting, please do not provide any Feedback.
+	
+  Feedback on this document should be directed to wsi-test-comments@ws-i.org.-->
+<xsd:schema targetNamespace="http://ws-i.org/profiles/basic/1.1/xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:simpleType name="swaRef">
+    <xsd:restriction base="xsd:anyURI"/>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-errors/XSD/ejustice-errors-schema-service-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:errors:service:v1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:see="urn:be:fgov:ejustice:errors:service:v1" xmlns:core="urn:be:fgov:ejustice:errors:core:v1">
+  <xs:annotation>
+    <xs:documentation xml:lang="en">This schema describes the structure of an Error detail as it is
+      communicated by the SOA Service Component to the SOA Platform
+      Not all fields are communicated to the Consumer ! (This
+      error is transformed to
+      a SOA
+      Error)</xs:documentation>
+  </xs:annotation>
+  <xs:import namespace="urn:be:fgov:ejustice:errors:core:v1" schemaLocation="ejustice-errors-schema-core-1_0.xsd"/>
+  <xs:element name="SystemError" type="see:SystemErrorType"/>
+  <xs:element name="BusinessError" type="see:BusinessErrorType"/>
+  <xs:complexType name="SystemErrorType">
+    <xs:annotation>
+      <xs:documentation>Type for SystemErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="see:ServiceErrorType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="BusinessErrorType">
+    <xs:annotation>
+      <xs:documentation>Type for BusinessErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="see:ServiceErrorType"/>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ServiceErrorType">
+    <xs:annotation>
+      <xs:documentation>Common Type for ServiceErrors.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="core:ErrorType">
+        <xs:sequence>
+          <xs:element name="Actor" type="xs:string">
+            <xs:annotation>
+              <xs:documentation>The actor is the element - in the message path - which detected/generated the fault.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="DateTime" type="xs:dateTime"/>
+          <xs:element name="Trace" type="see:TraceType" minOccurs="0">
+            <xs:annotation>
+              <xs:documentation>could be a java stacktrace or any other kind of trace, used internally, to document on the cause of this error.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="TraceType">
+    <xs:annotation>
+      <xs:documentation>StackTrace to cause of error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="TraceElement" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/ejustice-errors/XSD/ejustice-errors-schema-core-1_0.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="urn:be:fgov:ejustice:errors:core:v1" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:core="urn:be:fgov:ejustice:errors:core:v1">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="../../external/XSD/xml.xsd"/>
+  <xs:complexType name="LocalisedStringType">
+    <xs:annotation>
+      <xs:documentation>String of data in specified language.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute ref="xml:lang" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Basic information on Error.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Origin" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The component/party that is at the cause of the error: consumer or provider, client or server.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Code" type="xs:string"/>
+      <xs:element name="Message" type="core:LocalisedStringType" maxOccurs="unbounded"/>
+      <xs:element name="Retry" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="Contact" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="Id" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Unique number identifying this message.
+          If present, the ticket that was created for the client's request, leading to this Error, should be placed here.
+          Then this id can be used to trace back the message from request to
+          response.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/david/jdeveloper/mywork/JSB-Application/eJustBoxServices/V1.00/Schemas/external/XSD/xml.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.w3.org/XML/1998/namespace" xml:lang="en" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:annotation>
+    <xs:documentation>See http://www.w3.org/XML/1998/namespace.html and
+   http://www.w3.org/TR/REC-xml for information about this namespace.
+
+    This schema document describes the XML namespace, in a form
+    suitable for import by other schema documents.  
+
+    Note that local names in this namespace are intended to be defined
+    only by the World Wide Web Consortium or its subgroups.  The
+    following names are currently defined in this namespace and should
+    not be used with conflicting semantics by any Working Group,
+    specification, or document instance:
+
+    base (as an attribute name): denotes an attribute whose value
+         provides a URI to be used as the base for interpreting any
+         relative URIs in the scope of the element on which it
+         appears; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML Base specification.
+
+    id   (as an attribute name): denotes an attribute whose value
+         should be interpreted as if declared to be of type ID.
+         This name is reserved by virtue of its definition in the
+         xml:id specification.
+
+    lang (as an attribute name): denotes an attribute whose value
+         is a language code for the natural language of the content of
+         any element; its value is inherited.  This name is reserved
+         by virtue of its definition in the XML specification.
+  
+    space (as an attribute name): denotes an attribute whose
+         value is a keyword indicating what whitespace processing
+         discipline is intended for the content of the element; its
+         value is inherited.  This name is reserved by virtue of its
+         definition in the XML specification.
+
+    Father (in any context at all): denotes Jon Bosak, the chair of 
+         the original XML Working Group.  This name is reserved by 
+         the following decision of the W3C XML Plenary and 
+         XML Coordination groups:
+
+             In appreciation for his vision, leadership and dedication
+             the W3C XML Plenary on this 10th day of February, 2000
+             reserves for Jon Bosak in perpetuity the XML name
+             xml:Father</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>This schema defines attributes and an attribute group
+        suitable for use by
+        schemas wishing to allow xml:base, xml:lang, xml:space or xml:id
+        attributes on elements they define.
+
+        To enable this, such a schema must import this schema
+        for the XML namespace, e.g. as follows:
+        &lt;schema . . .>
+         . . .
+         &lt;import namespace="http://www.w3.org/XML/1998/namespace"
+                    schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+
+        Subsequently, qualified reference to any of the attributes
+        or the group defined below will have the desired effect, e.g.
+
+        &lt;type . . .>
+         . . .
+         &lt;attributeGroup ref="xml:specialAttrs"/>
+ 
+         will define a type which will schema-validate an instance
+         element with any of those attributes</xs:documentation>
+  </xs:annotation>
+  <xs:annotation>
+    <xs:documentation>In keeping with the XML Schema WG's standard versioning
+   policy, this schema document will persist at
+   http://www.w3.org/2007/08/xml.xsd.
+   At the date of issue it can also be found at
+   http://www.w3.org/2001/xml.xsd.
+   The schema document at that URI may however change in the future,
+   in order to remain compatible with the latest version of XML Schema
+   itself, or with the XML namespace itself.  In other words, if the XML
+   Schema or XML namespaces change, the version of this document at
+   http://www.w3.org/2001/xml.xsd will change
+   accordingly; the version at
+   http://www.w3.org/2007/08/xml.xsd will not change.</xs:documentation>
+  </xs:annotation>
+  <xs:attribute name="lang">
+    <xs:annotation>
+      <xs:documentation>Attempting to install the relevant ISO 2- and 3-letter
+         codes as the enumerated possible values is probably never
+         going to be a realistic possibility.  See
+         RFC 3066 at http://www.ietf.org/rfc/rfc3066.txt and the IANA registry
+         at http://www.iana.org/assignments/lang-tag-apps.htm for
+         further information.
+
+         The union allows for the 'un-declaration' of xml:lang with
+         the empty string.</xs:documentation>
+    </xs:annotation>
+    <xs:simpleType>
+      <xs:union memberTypes="xs:language">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value=""/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:union>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="space">
+    <xs:simpleType>
+      <xs:restriction base="xs:NCName">
+        <xs:enumeration value="default"/>
+        <xs:enumeration value="preserve"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:attribute>
+  <xs:attribute name="base" type="xs:anyURI">
+    <xs:annotation>
+      <xs:documentation>See http://www.w3.org/TR/xmlbase/ for
+                     information about this attribute.</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attribute name="id" type="xs:ID">
+    <xs:annotation>
+      <xs:documentation>See http://www.w3.org/TR/xml-id/ for
+                     information about this attribute.</xs:documentation>
+    </xs:annotation>
+  </xs:attribute>
+  <xs:attributeGroup name="specialAttrs">
+    <xs:attribute ref="xml:base"/>
+    <xs:attribute ref="xml:lang"/>
+    <xs:attribute ref="xml:space"/>
+    <xs:attribute ref="xml:id"/>
+  </xs:attributeGroup>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost/eJustBoxConsultationService</con:endpoint><con:endpoint>http://localhost:7101/1.00/CPS_ConsultationService</con:endpoint><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:endpoint>https://Davids-MacBook-Pro-2.local:8088/mockConsultationService</con:endpoint><con:endpoint>https://Davids-MacBook-Pro-2.local:8088/mockConsultationService</con:endpoint><con:endpoint>https://jsb-acc.just.fgov.be/1.00/CPS_ConsultationService</con:endpoint></con:endpoints><con:operation id="dbe84043-9ccb-43f2-bcad-84178ce72deb" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage" name="deleteMessage" bindingOperationName="deleteMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a968d0b1-0398-41ed-bb7a-fe40f66901dd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteMessageRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <!--1 or more repetitions:-->
+         <MessageId>9Y0002LKM3006</MessageId>
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:DeleteMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/><con:wsrmConfig version="1.2"/></con:call><con:call id="8c5adb70-7aa3-4ad3-aa95-37f0fe360e13" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteMessageRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <!--1 or more repetitions:-->
+         <MessageId>invalid</MessageId>
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:DeleteMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f77dbf9e-82af-4d53-b808-f6111884824b" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteOoO" name="deleteOoO" bindingOperationName="deleteOoO" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="146a8948-7ce0-4591-aeba-faad3e94b9a7" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7101/1.00/CPS_ConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteOoORequest>
+         <Actor>
+            <Id>?</Id>
+            <Type>?</Type>
+            <Quality>?</Quality>
+            <Name>?</Name>
+         </Actor>
+         <!--1 or more repetitions:-->
+         <OoOId>?</OoOId>
+      </urn:DeleteOoORequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteOoO"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="21dddf27-8cfe-4252-bfdf-0ea1a4bbe278" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getBoxInfo" name="getBoxInfo" bindingOperationName="getBoxInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4974833a-ea18-46f0-b76e-4b4ca19f0c74" name="Request 1" outgoingWss="outgoing" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetBoxInfoRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+      </urn:GetBoxInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" messageID="${=java.util.UUID.randomUUID()}"/><con:wsrmConfig version="1.2"/></con:call><con:call id="bb867e19-1a2d-46ae-8fbc-127618fe32de" name="Request 2" outgoingWss="outgoing" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetBoxInfoRequest>
+         <Actor>
+            <Id>121000000000019</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+      </urn:GetBoxInfoRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" to="${=java.util.UUID.randomUUID()}" generateMessageId="true"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="8134e76f-6906-465f-8286-ebe8dd1a1d6a" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage" name="getFullMessage" bindingOperationName="getFullMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a403750c-54e8-40be-84bb-60e7e9c9767e" name="Request 1" useWsAddressing="true" outgoingWss="outgoing"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetFullMessageRequest>
+         <Actor>
+            <Id>113703020000072</Id>
+            <Type>EBOXID</Type>
+            <Quality>ROJ</Quality>
+            <Name>vredegerecht van het kanton Antwerpen III</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <MessageId>1000000000265</MessageId>
+      </urn:GetFullMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" messageID="java.util.UUID.randomUUID"/><con:wsrmConfig version="1.2"/></con:call><con:call id="5b51e30c-1913-4f54-bf5f-a186d45a6cc6" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetFullMessageRequest>
+         <Actor>
+            <Id>113703020000072</Id>
+            <Type>EBOXID</Type>
+            <Quality>ROJ</Quality>
+            <Name>vredegerecht van het kanton Antwerpen III</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <MessageId>invalid</MessageId>
+      </urn:GetFullMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="9b8478f3-cec2-490a-8cdc-8608624d6a1e" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus" name="getMessageAcknowledgmentsStatus" bindingOperationName="getMessageAcknowledgmentsStatus" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9322f33a-6b68-4fa4-a5f1-6db3f152dd58" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7101/1.00/CPS_ConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessageAcknowledgmentsStatusRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBSS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <MessageId>9Y0002LKM3006</MessageId>
+      </urn:GetMessageAcknowledgmentsStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/><con:wsrmConfig version="1.2"/></con:call><con:call id="b7fd4c3a-2644-4787-a9c3-b35c2f5673b1" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/eJustBoxConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessageAcknowledgmentsStatusRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBSS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <MessageId>invalid</MessageId>
+      </urn:GetMessageAcknowledgmentsStatusRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="573d0d58-0155-45b8-980d-acc854e2ea0d" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory" name="getMessageHistory" bindingOperationName="getMessageHistory" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="863e7b60-abd8-4528-a703-c81d7544b5f2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetHistoryRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <MessageId>9Y0002LKM3006</MessageId>
+      </urn:GetHistoryRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/><con:wsrmConfig version="1.2"/></con:call><con:call id="42c13877-271f-4b10-bad6-e5ed5bed214c" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetHistoryRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>jjjjj</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>invalid</Source>
+         <MessageId>invalid</MessageId>
+      </urn:GetHistoryRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="b1560a81-f1ae-4863-894f-f2f0a81aec79" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList" name="getMessagesList" bindingOperationName="getMessagesList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="f4d9605d-a484-4ab1-9c07-64b543ee4cde" name="Request 1" outgoingWss="outgoing" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessagesListRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBSS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <StartIndex>1</StartIndex>
+	    <EndIndex>100</EndIndex>
+      </urn:GetMessagesListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" messageID="${=java.util.UUID.randomUUID()}"/><con:wsrmConfig version="1.2"/></con:call><con:call id="1118b057-b8ab-4dcd-8cff-828a8b177d25" name="Request 2" outgoingWss="user" useWsAddressing="true"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessagesListRequest>
+         <Actor>
+            <Id>113703020000072</Id>
+            <Type>EBOXID</Type>
+            <Quality>ROJ</Quality>
+            <Name>vredegerecht van het kanton Antwerpen III</Name>
+         </Actor>
+         <Source>INBOX</Source>
+         <StartIndex>100</StartIndex>
+	    <EndIndex>1</EndIndex>
+      </urn:GetMessagesListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="" messageID="${=java.util.UUID.randomUUID()}"/><con:wsrmConfig version="1.2"/></con:call><con:call id="6d9e0367-c3ff-4bf4-bf67-939a2068b19c" name="Request 3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <urn:GetMessagesListRequest>\r
+         <Actor>\r
+            <Id>111111</Id>\r
+            <Type>EBOXID</Type>\r
+            <Quality>ROJ</Quality>\r
+            <Name>Staarten</Name>\r
+            <!--Optional:-->
+            <FirstName>Tom</FirstName>\r\r
+         </Actor>\r
+         <Source>INBOX</Source>\r
+         <!--Optional:-->
+         <StartIndex>1</StartIndex>\r
+         <!--Optional:-->\r
+         <EndIndex>102</EndIndex>\r
+        
+      </urn:GetMessagesListRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="3486dfc3-2693-41ef-8832-e2dc3d8b0108" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getOoOList" name="getOoOList" bindingOperationName="getOoOList" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="a631f7bd-2dd1-4512-a6d6-b99ad52932e6" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7101/1.00/CPS_ConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetOoOListRequest>
+         <Actor>
+            <Id>?</Id>
+            <Type>?</Type>
+            <Quality>?</Quality>
+            <Name>?</Name>
+         </Actor>
+      </urn:GetOoOListRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getOoOList"/></con:call></con:operation><con:operation id="563b01d0-fc81-4d09-8db9-038826e29f0a" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:insertOoO" name="insertOoO" bindingOperationName="insertOoO" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5cd8ecd3-0dcd-4543-bfc6-6f7776d4fc2d" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:7101/1.00/CPS_ConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:InsertOoORequest>
+         <Actor>
+            <Id>?</Id>
+            <Type>?</Type>
+            <Quality>?</Quality>
+            <Name>?</Name>
+         </Actor>
+         <StartDate>?</StartDate>
+         <EndDate>?</EndDate>
+      </urn:InsertOoORequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:insertOoO"/></con:call></con:operation><con:operation id="70640cee-89a3-4364-90f8-91cbdf7db0e9" isOneWay="false" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage" name="moveMessage" bindingOperationName="moveMessage" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="5969cb68-695b-410b-8da8-4b58fd4dbc74" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:MoveMessageRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>BININBOX</Source>
+         <Destination>INBOX</Destination>
+         <!--1 or more repetitions:-->
+         <MessageId>9Y0002LKM3006</MessageId>
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:MoveMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/><con:wsrmConfig version="1.2"/></con:call><con:call id="fc5405b8-7472-41d6-8d4b-ed4afdd93675" name="Request 2"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:MoveMessageRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>BININBOX</Source>
+         <Destination>INBOX</Destination>
+         <!--1 or more repetitions:-->
+         <MessageId>invalid</MessageId>
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:MoveMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/><con:wsrmConfig version="1.2"/></con:call><con:call id="e74e2d00-0fcd-44c3-949d-735bede64051" name="Request 3"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8088/mockConsultationService</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:MoveMessageRequest>
+         <Actor>
+            <Id>121000000000012</Id>
+            <Type>EBOXID</Type>
+            <Quality>MBS</Quality>
+            <Name>Staatsblad</Name>
+         </Actor>
+         <Source>SANDBOX</Source>
+         <Destination>INBOX</Destination>
+         <!--1 or more repetitions:-->
+         <MessageId>9Y0002LKM3006</MessageId>
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:MoveMessageRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService id="c844452b-052c-4062-97aa-d7cec0a33db4" port="8088" path="/mockConsultationService" host="Davids-MacBook-Pro-2.local" name="eJustBoxConsultationBinding MockService" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:properties/><con:mockOperation name="deleteMessage" id="6cc64c54-9b30-4195-b7e0-e68391f23618" interface="eJustBoxConsultationBinding" operation="deleteMessage"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def messageId1 = requestXmlHolder["//MessageId[1]"]
+
+log.info messageId1
+
+if (messageId1 == 'invalid') {
+	return 'Response error'
+}
+else {
+	return 'Response OK'
+}</con:dispatchPath><con:response name="Response OK" id="174bf37f-965f-4692-8f18-30041ccdae45" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteMessageResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+      </urn:DeleteMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/></con:response><con:response name="Response error" id="ed29ea52-0160-47a8-90db-15c8e9caf769" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteMessageResponse Id="?" InResponseTo="?" IssueInstant="?">
+         <urn1:Status>
+            <urn1:StatusCode Value="815">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>Not all messages were deleted successfully. Please verify for each message that the Source and MessageId are correct.</urn1:StatusMessage>
+         </urn1:Status>
+         <!--1 or more repetitions:-->
+         <MessageId>invalid</MessageId>
+      </urn:DeleteMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="deleteOoO" id="5b9cfdc2-92a3-4167-bbdd-8ea02faf02fc" interface="eJustBoxConsultationBinding" operation="deleteOoO"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="da4f1941-1059-4354-bbe5-886da54a88fa" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:DeleteOoOResponse Id="?" InResponseTo="?" IssueInstant="?">
+         <urn1:Status>
+            <urn1:StatusCode Value="?">
+               <!--Optional:-->
+               <urn1:StatusCode/>
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>?</urn1:StatusMessage>
+            <!--Optional:-->
+            <urn1:StatusDetail>
+               <!--You may enter ANY elements at this point-->
+            </urn1:StatusDetail>
+         </urn1:Status>
+         <!--1 or more repetitions:-->
+         <OoOId>?</OoOId>
+      </urn:DeleteOoOResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteOoO"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getBoxInfo" id="1d9fb8db-c1fa-4fc9-a498-8d0c6303643c" interface="eJustBoxConsultationBinding" operation="getBoxInfo"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def id = requestXmlHolder["//Id"]
+
+log.info id
+
+if (id == "121000000000012") {
+	return "Response OK"
+}
+else {
+	return 'Response error'
+}</con:dispatchPath><con:response name="Response OK" id="7274b0dc-1dd3-4aae-abc6-83805993e15b" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Header xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+      <wsa05:MessageID xmlns:wsa05="http://www.w3.org/2005/08/addressing">d1655e63-ce15-4f6a-96eb-6c8d0dc2e17c</wsa05:MessageID>
+      <wsa05:RelatesTo RelationshipType="http://www.w3.org/2005/08/addressing/reply" xmlns:wsa05="http://www.w3.org/2005/08/addressing">80baba6a-7384-4722-8799-4a3df535f79e</wsa05:RelatesTo>
+
+   </soap:Header>
+   <env:Body xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+      <ns3:GetBoxInfoResponse Id="EJ_76f21755-de34-4736-a058-c7af7999c89c" IssueInstant="2017-02-09T14:30:43.576+01:00" xmlns:ns7="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns6="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns5="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns4="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns3="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1">
+         <ns4:Status>
+            <ns4:StatusCode Value="100"/>
+            <ns4:StatusMessage>SUCCESS</ns4:StatusMessage>
+            <ns4:StatusDetail/>
+         </ns4:Status>
+         <NbrMessagesInStandBy>0</NbrMessagesInStandBy>
+         <NbrUnreadMessages>5</NbrUnreadMessages>
+         <CurrentSize>8911747</CurrentSize>
+         <MaxSize>10485760</MaxSize>
+      </ns3:GetBoxInfoResponse>
+   </env:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getBoxInfo"/></con:response><con:response name="Response error" id="7274b0dc-1dd3-4aae-abc6-83805993e15b" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>The Actor ID is invalid for the given type.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>908</Code>
+          <Message>The Actor ID is invalid for the given type.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+            <ns5:TraceElement>Caused by: class be.smals.ejustbox.webservices.service.exception.WsRuntimeException : Invalid EBOXID value</ns5:TraceElement>
+            <ns5:TraceElement>be.smals.ejustbox.webservices.service.adapter.AbstractAdapterImpl.getEboxUser(AbstractAdapterImpl.java:62)</ns5:TraceElement>
+            <ns5:TraceElement>be.smals.ejustbox.webservices.service.adapter.ConsultationAdapterImpl.getBoxInfo(ConsultationAdapterImpl.java:112)</ns5:TraceElement>
+            <ns5:TraceElement>be.smals.ejustbox.webservices.consultation.ConsultationWsServicePortImpl.getBoxInfo(ConsultationWsServicePortImpl.java:144)</ns5:TraceElement>
+            <ns5:TraceElement>sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</ns5:TraceElement>
+            <ns5:TraceElement>sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)</ns5:TraceElement>
+            <ns5:TraceElement>sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</ns5:TraceElement>
+            <ns5:TraceElement>java.lang.reflect.Method.invoke(Method.java:606)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.ee.component.ManagedReferenceMethodInterceptor.processInvocation(ManagedReferenceMethodInterceptor.java:52)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.WeavedInterceptor.processInvocation(WeavedInterceptor.java:53)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.ee.component.interceptors.UserInterceptorFactory$1.processInvocation(UserInterceptorFactory.java:63)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.WeavedInterceptor.processInvocation(WeavedInterceptor.java:53)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.ee.component.interceptors.UserInterceptorFactory$1.processInvocation(UserInterceptorFactory.java:63)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InitialInterceptor.processInvocation(InitialInterceptor.java:21)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.ChainedInterceptor.processInvocation(ChainedInterceptor.java:61)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.ee.component.interceptors.ComponentDispatcherInterceptor.processInvocation(ComponentDispatcherInterceptor.java:53)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.webservices.deployers.WSComponentInstanceAssociationInterceptor.processInvocation(WSComponentInstanceAssociationInterceptor.java:49)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.InterceptorContext.proceed(InterceptorContext.java:288)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.invocation.ChainedInterceptor.processInvocation(ChainedInterceptor.java:61)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.ee.component.ViewService$View.invoke(ViewService.java:185)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.webservices.invocation.AbstractInvocationHandler.invoke(AbstractInvocationHandler.java:129)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.JBossWSInvoker.performInvocation(JBossWSInvoker.java:177)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.service.invoker.AbstractInvoker.invoke(AbstractInvoker.java:104)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.jaxws.AbstractJAXWSMethodInvoker.invoke(AbstractJAXWSMethodInvoker.java:237)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.jaxws.JAXWSMethodInvoker.invoke(JAXWSMethodInvoker.java:69)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.JBossWSInvoker.invoke(JBossWSInvoker.java:146)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.interceptor.ServiceInvokerInterceptor$1.run(ServiceInvokerInterceptor.java:58)</ns5:TraceElement>
+            <ns5:TraceElement>java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:471)</ns5:TraceElement>
+            <ns5:TraceElement>java.util.concurrent.FutureTask.run(FutureTask.java:262)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.workqueue.SynchronousExecutor.execute(SynchronousExecutor.java:37)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.interceptor.ServiceInvokerInterceptor.handleMessage(ServiceInvokerInterceptor.java:107)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:272)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:249)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.RequestHandlerImpl.handleHttpRequest(RequestHandlerImpl.java:97)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.transport.ServletHelper.callRequestHandler(ServletHelper.java:131)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.CXFServletExt.invoke(CXFServletExt.java:88)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:286)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.cxf.transport.servlet.AbstractHTTPServlet.doPost(AbstractHTTPServlet.java:206)</ns5:TraceElement>
+            <ns5:TraceElement>javax.servlet.http.HttpServlet.service(HttpServlet.java:754)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.stack.cxf.CXFServletExt.service(CXFServletExt.java:136)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.wsf.spi.deployment.WSFServlet.service(WSFServlet.java:140)</ns5:TraceElement>
+            <ns5:TraceElement>javax.servlet.http.HttpServlet.service(HttpServlet.java:847)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:295)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:214)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:231)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:149)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.web.security.SecurityContextAssociationValve.invoke(SecurityContextAssociationValve.java:169)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:145)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:97)</ns5:TraceElement>
+            <ns5:TraceElement>org.jboss.as.web.sso.ClusteredSingleSignOn.invoke(ClusteredSingleSignOn.java:356)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:102)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.valves.RemoteIpValve.invoke(RemoteIpValve.java:621)</ns5:TraceElement>
+            <ns5:TraceElement>be.smals.jboss.ProxyValve.invoke(ProxyValve.java:49)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:856)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:653)</ns5:TraceElement>
+            <ns5:TraceElement>org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:926)</ns5:TraceElement>
+            <ns5:TraceElement>java.lang.Thread.run(Thread.java:745)</ns5:TraceElement>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getBoxInfo"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getFullMessage" id="992020e7-212a-481a-8956-b44dd34bd147" interface="eJustBoxConsultationBinding" operation="getFullMessage"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def messageId = requestXmlHolder["//MessageId"]
+
+log.info messageId
+
+if (messageId == 'invalid') {
+	return 'Response error'
+}
+else {
+	return 'Response OK'
+}
+</con:dispatchPath><con:response name="Response OK" id="6ceb2bd7-25b8-4095-bcfe-4e22f36afbb5" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetFullMessageResponse Id="?" InResponseTo="?" IssueInstant="?">
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+               <urn1:StatusCode/>
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+         <Sender>
+            <Id>1000000000012</Id>
+            <Type>Type B</Type>
+            <Quality>Quality B</Quality>
+            <Name>Rodger</Name>
+         </Sender>
+         <Message MessageId="1000000000265">
+            <!--Optional:-->
+            <PublicationId>InitialDoc</PublicationId>
+            <!--1 or more repetitions:-->
+            <DestinationContext>
+               <Id>99999999964</Id>
+			<Type>Type B</Type>
+			<Quality>Quality B</Quality>
+            </DestinationContext>
+            <ContentContext>
+               <Content>
+                  <Document>
+                     <Title>Full Message Title</Title>
+                     <EncryptableContent>cid:239374828548</EncryptableContent>
+                  </Document>
+                  <!--Zero or more repetitions:-->
+                  <EncryptableINSSPerson>cid:146229281665</EncryptableINSSPerson>
+                  <!--Zero or more repetitions:-->
+                  <Annex>
+                     <EncryptableTitle>8529341968</EncryptableTitle>
+                     <EncryptableContent>cid:att.pdf</EncryptableContent>
+                     <DownloadFileName>File Name</DownloadFileName>
+                     <MimeType>file</MimeType>
+                  </Annex>
+               </Content>
+               <ContentSpecification>
+                  <ContentType>DOCUMENT</ContentType>
+                  <IsImportant>false</IsImportant>
+                  <IsEncrypted>false</IsEncrypted>
+               </ContentSpecification>
+               <!--0 to 50 repetitions:-->
+               <CustomMeta>
+                  <Key>DocumentType</Key>
+                  <Value>Scan</Value>
+               </CustomMeta>
+               <CustomMeta>
+				<Key>CategoryID</Key>
+				<Value>2</Value>
+			</CustomMeta>
+            </ContentContext>
+           
+         </Message>
+         <MessageInfo>
+            <PublicationDate>2011-06-28+02:00</PublicationDate>
+            <ExpirationDate>2011-12-31+01:00</ExpirationDate>
+            <Size>12</Size>
+         </MessageInfo>
+      </urn:GetFullMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:attachment><con:name>att.pdf</con:name><con:contentType>application/pdf</con:contentType><con:size>1306</con:size><con:contentId>att.pdf</con:contentId><con:data>UEsDBBQACAgIAJRZw0gAAAAAAAAAAAAAAAAHAAAAYXR0LnBkZt2U0WrCMBSGX6X0vmvrFEbQQm0ZeLON2RfIkqPLZpKSkwz16ReNHeqEsVFvBr1Iycn5vvNfnDFtW1JaS9kr8FozJ0HZaC1XCom/msTOKKIpCiSKSkCCLTCxEIxaoRVxLyuC/qmkZI38W6NkEB96AZvEwI5rH+fTJLvJ42KscEhm9aHQ//wSWmkptZr6cuaPrVYejJ5cbLfbPCmbJsvHaWAcWIgOamqhf+Qgy4dJNkjyDtmhAvmJGl/ZpXOtmQP6nHXJoNm0UGl+hSBu77JLGh1wJzMic1AcjK+wmy+D0Z8MyuXSwNLnfGqxp+z7P/hOIYHdqf95742wzpmoMiAlGAHR7A0lVQreIQQRDNIzo/Qsh6D8DAzExz+JJuK4WCDffT8mcTJ4cAw75Wgt9RtE6smXdmDxCVBLBwg23o7RNQEAABoFAABQSwECFAAUAAgICACUWcNINt6O0TUBAAAaBQAABwAAAAAAAAAAAAAAAAAAAAAAYXR0LnBkZlBLBQYAAAAAAQABADUAAABqAQAAAAA=</con:data><con:id>d0a206c1-ddc6-4cbc-9de6-342deee5b6df</con:id></con:attachment><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage"/></con:response><con:response name="Response error" id="6104a342-6e49-47fa-973b-3b11b0d811c9" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>The specified MessageID is invalid; please verify that the Source and the MessageID are correct and that you can access it.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>806</Code>
+          <Message>The specified MessageID is invalid; please verify that the Source and the MessageID are correct and that you can access it.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getMessageAcknowledgmentsStatus" id="3dd31476-3c3f-4c50-95db-cc7e7891fc44" interface="eJustBoxConsultationBinding" operation="getMessageAcknowledgmentsStatus"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def messageId = requestXmlHolder["//MessageId"]
+
+log.info messageId
+
+if (messageId == 'invalid') {
+	return 'Response error'
+}
+else {
+	return 'Response OK'
+}
+</con:dispatchPath><con:response name="Response OK" id="549b0721-1b50-4ab1-ab7e-07d68ba9ce82" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessageAcknowledgmentsStatusResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+         <AcknowledgmentsStatus>
+            <!--1 or more repetitions:-->
+            <Row>
+               <Recipient>
+                  <Id>99999999964</Id>
+                  <Type>TYpe A</Type>
+                  <Quality>Quality A</Quality>
+                  <!--Optional:-->
+                 <User LastName="Simon" FirstName="Llew">99999999965</User>
+               </Recipient>
+               <!--Optional:-->
+               <Published>2011-12-17T09:30:47Z</Published>
+			<Received>2011-12-17T10:31:17Z </Received>
+			<Read>2011-12-17T09:30:47Z </Read>
+            </Row>
+            <Row>
+               <Recipient>
+                  <Id>99999999965</Id>
+                  <Type>TYpe C</Type>
+                  <Quality>Quality C</Quality>
+                  <!--Optional:-->
+                 <User LastName="Steven" FirstName="Gerrard">99999999966</User>
+               </Recipient>
+               <!--Optional:-->
+               <Published>2011-11-17T09:30:47Z</Published>
+			<Received>2011-11-17T10:31:17Z </Received>
+			<Read>2011-11-17T09:30:47Z </Read>
+            </Row>
+         </AcknowledgmentsStatus>
+      </urn:GetMessageAcknowledgmentsStatusResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/></con:response><con:response name="Response error" id="b7f9dbb0-d644-4614-b415-8c08cac64c99" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>The specified MessageID is invalid; please verify that the MessageID is correct and that you are the sender.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>809</Code>
+          <Message>The specified MessageID is invalid; please verify that the MessageID is correct and that you are the sender.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getMessageHistory" id="d755c8cf-cc5c-4c9a-85aa-c06fed2bd886" interface="eJustBoxConsultationBinding" operation="getMessageHistory"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def messageId = requestXmlHolder["//MessageId"]
+def source = requestXmlHolder["//Source"]
+
+log.info messageId
+log.info source
+
+if (messageId == 'invalid' || source == 'invalid') {
+	return 'Response error'
+}
+else {
+	return 'Response OK'
+}
+</con:dispatchPath><con:response name="Response OK" id="d64d23d7-5f94-45c8-af14-29c028ad51c7" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetHistoryResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+         <!--1 or more repetitions:-->
+         <MessageId>9Y0002LKM3007</MessageId>
+      </urn:GetHistoryResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/></con:response><con:response name="Response error" id="3d8428fc-3c0c-4fd2-88cc-3a65972585ac" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>The specified MessageID is invalid; please verify that the Source and the MessageID are correct and that you can access it.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>806</Code>
+          <Message>The specified MessageID is invalid; please verify that the Source and the MessageID are correct and that you can access it.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getMessagesList" id="87bc8134-d6d7-4da4-bba1-9cb111b6e1f4" interface="eJustBoxConsultationBinding" operation="getMessagesList"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def startIndex = Integer.parseInt(requestXmlHolder["//StartIndex"])
+def endIndex = Integer.parseInt(requestXmlHolder["//EndIndex"])
+
+log.info startIndex
+log.info endIndex
+
+if (endIndex &lt; startIndex) {
+	return 'Response error1'
+}
+
+else if (endIndex - startIndex + 1 > 100) {
+	return 'Response error2'
+}
+else {
+	return 'Response OK'
+}
+</con:dispatchPath><con:response name="Response OK" id="99baacf5-4235-4463-94e3-08866bd35366" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+	xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" 
+	xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetMessagesListResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+            
+         </urn1:Status>
+         <Source>INBOX</Source>
+         <!--Zero or more repetitions:-->
+         <Message>
+            <MessageId>100</MessageId>
+            <Destination>
+               <Id>223243243</Id>
+               <Type>Type A</Type>
+            </Destination>
+            <Sender>
+               <Id>200</Id>
+               <Type>A</Type>
+               <Quality>MBL</Quality>
+               <Name>Ricky</Name>
+            </Sender>
+            <MessageInfo>
+               <PublicationDate>2011-06-28+02:00</PublicationDate>
+               <ExpirationDate>2011-12-31+01:00</ExpirationDate>
+               <Size>46</Size>
+            </MessageInfo>
+            <!--Optional:-->
+            <ContentInfo>
+               <!--Optional:-->
+               <EncryptableINSSPerson>cid:68865894649</EncryptableINSSPerson>
+               <Title>News in eJustBox</Title>
+               <MimeType>text/plain</MimeType>
+               <HasAnnex>false</HasAnnex>
+            </ContentInfo>
+            <ContentSpecification>
+               <ContentType>NEWS</ContentType>
+               <IsImportant>false</IsImportant>
+               <IsEncrypted>true</IsEncrypted>
+            </ContentSpecification>
+         </Message>
+         <Message>
+            <MessageId>101</MessageId>
+            <Destination>
+               <Id>2232432347</Id>
+               <Type>Type B</Type>
+            </Destination>
+            <Sender>
+               <Id>201</Id>
+               <Type>B</Type>
+               <Quality>MBL</Quality>
+               <Name>Martin</Name>
+            </Sender>
+            <MessageInfo>
+               <PublicationDate>2012-06-28+02:00</PublicationDate>
+               <ExpirationDate>2012-12-31+01:00</ExpirationDate>
+               <Size>46</Size>
+            </MessageInfo>
+            <!--Optional:-->
+            <ContentInfo>
+               <!--Optional:-->
+               <EncryptableINSSPerson>cid:68865894649</EncryptableINSSPerson>
+               <Title>Message 2</Title>
+               <MimeType>text/plain</MimeType>
+               <HasAnnex>false</HasAnnex>
+            </ContentInfo>
+            <ContentSpecification>
+               <ContentType>NEWS</ContentType>
+               <IsImportant>true</IsImportant>
+               <IsEncrypted>true</IsEncrypted>
+            </ContentSpecification>
+         </Message>
+         <Message>
+            <MessageId>102</MessageId>
+            <Destination>
+               <Id>2232432555</Id>
+               <Type>Type C</Type>
+            </Destination>
+            <Sender>
+               <Id>203</Id>
+               <Type>F</Type>
+               <Quality>MBL</Quality>
+               <Name>Solomon</Name>
+            </Sender>
+            <MessageInfo>
+               <PublicationDate>2016-06-28+02:00</PublicationDate>
+               <ExpirationDate>2016-12-31+01:00</ExpirationDate>
+               <Size>46</Size>
+            </MessageInfo>
+            <!--Optional:-->
+            <ContentInfo>
+               <!--Optional:-->
+               <EncryptableINSSPerson>cid:68865894649</EncryptableINSSPerson>
+               <Title>Message 3</Title>
+               <MimeType>text/plain</MimeType>
+               <HasAnnex>false</HasAnnex>
+            </ContentInfo>
+            <ContentSpecification>
+               <ContentType>NEWS</ContentType>
+               <IsImportant>false</IsImportant>
+               <IsEncrypted>true</IsEncrypted>
+            </ContentSpecification>
+         </Message>
+      </urn:GetMessagesListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/></con:response><con:response name="Response error1" id="8d771b43-60c2-4eb2-bc90-7282261e7d2a" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>EndIndex must be larger or equal to StartIndex; please correct StartIndex and EndIndex.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>807</Code>
+          <Message>EndIndex must be larger or equal to StartIndex; please correct StartIndex and EndIndex.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/></con:response><con:response name="Response error2" id="ba5d82da-06c2-456e-b50a-05619542b9e7" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>A maximum of 100 messages can be returned by request; please correct StartIndex and EndIndex.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>808</Code>
+          <Message>A maximum of 100 messages can be returned by request; please correct StartIndex and EndIndex.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="getOoOList" id="0a7aaaf2-69cc-4ed5-8ced-decd70316570" interface="eJustBoxConsultationBinding" operation="getOoOList"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="20be999b-15f2-4036-a432-f1545de5d5da" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:GetOoOListResponse Id="?" InResponseTo="?" IssueInstant="?">
+         <urn1:Status>
+            <urn1:StatusCode Value="?">
+               <!--Optional:-->
+               <urn1:StatusCode/>
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>?</urn1:StatusMessage>
+            <!--Optional:-->
+            <urn1:StatusDetail>
+               <!--You may enter ANY elements at this point-->
+            </urn1:StatusDetail>
+         </urn1:Status>
+         <!--1 or more repetitions:-->
+         <OoO>
+            <OoOId>?</OoOId>
+            <StartDate>?</StartDate>
+            <EndDate>?</EndDate>
+            <!--Zero or more repetitions:-->
+            <Substitute>
+               <Id>?</Id>
+               <Type>?</Type>
+               <Quality>?</Quality>
+            </Substitute>
+         </OoO>
+      </urn:GetOoOListResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getOoOList"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="insertOoO" id="e1eb15e5-5778-4e88-82da-2965de60217f" interface="eJustBoxConsultationBinding" operation="insertOoO"><con:settings/><con:defaultResponse>Response 1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:response name="Response 1" id="fed85038-1db2-4c16-a6f6-b772c195826d" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:InsertOoOResponse Id="?" InResponseTo="?" IssueInstant="?">
+         <urn1:Status>
+            <urn1:StatusCode Value="?">
+               <!--Optional:-->
+               <urn1:StatusCode/>
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>?</urn1:StatusMessage>
+            <!--Optional:-->
+            <urn1:StatusDetail>
+               <!--You may enter ANY elements at this point-->
+            </urn1:StatusDetail>
+         </urn1:Status>
+         <!--Optional:-->
+         <OoOId>?</OoOId>
+         <!--Zero or more repetitions:-->
+         <Substitute>
+            <Id>?</Id>
+            <Type>?</Type>
+            <Quality>?</Quality>
+            <!--Optional:-->
+            <AbsentFrom>?</AbsentFrom>
+            <!--Optional:-->
+            <AbsentTo>?</AbsentTo>
+         </Substitute>
+      </urn:InsertOoOResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:insertOoO"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="moveMessage" id="4cdf836b-6a59-4c1e-955a-2290880fe2f6" interface="eJustBoxConsultationBinding" operation="moveMessage"><con:settings/><con:defaultResponse>Response OK</con:defaultResponse><con:dispatchStyle>SCRIPT</con:dispatchStyle><con:dispatchPath>import com.eviware.soapui.support.GroovyUtils
+
+def groovyUtils = new GroovyUtils(context)
+def requestXmlHolder = groovyUtils.getXmlHolder(mockRequest.getRequestContent())
+def source = requestXmlHolder["//Source"]
+def destination = requestXmlHolder["//Destination"]
+
+def messageId1 = requestXmlHolder["//MessageId[1]"]
+
+log.info source
+log.info destination
+log.info messageId1
+
+if (source == 'SANDBOX' &amp;&amp; destination == 'INBOX') {
+	return 'Response error'
+}
+else if (messageId1 == 'invalid') {
+	return 'Response OK error'
+}
+else {
+	return 'Response OK'
+}</con:dispatchPath><con:response name="Response OK" id="2039061f-0c37-4554-9dde-9d57c441849b" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:MoveMessageResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="100">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>SUCCESS</urn1:StatusMessage>
+         </urn1:Status>
+      </urn:MoveMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/></con:response><con:response name="Response OK error" id="8be5507d-d301-4393-90a4-81f74c00e5c5" httpResponseStatus="200" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" xmlns:urn1="urn:be:fgov:ejustice:commons:core:v1">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:MoveMessageResponse>
+         <urn1:Status>
+            <urn1:StatusCode Value="813">
+            </urn1:StatusCode>
+            <!--Optional:-->
+            <urn1:StatusMessage>Not all messages were moved successfully. Please verify for each message that the Source and the MessageID are correct. Also pay attention that a message in the recycle bin which was moved from the Inbox cannot be restored back to the Sentbox and vice versa.</urn1:StatusMessage>
+         </urn1:Status>
+         <MessageId>invalid</MessageId>
+      </urn:MoveMessageResponse>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/></con:response><con:response name="Response error" id="f74771a3-782b-430e-9445-d9f90c7780da" httpResponseStatus="500" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <env:Header/>
+  <soap:Body>
+    <soap:Fault>
+      <faultcode>soap:Server</faultcode>
+      <faultstring>You can not move a message from your Inbox to your Sentbox (even via recycle bin) and vice versa.</faultstring>
+      <detail>
+        <ns5:SystemError xmlns:ns6="urn:be:fgov:ejustice:commons:protocol:v1" xmlns:ns5="urn:be:fgov:ejustice:errors:service:v1" xmlns:ns4="urn:be:fgov:ejustice:monitoring:protocol:v1" xmlns:ns3="urn:be:fgov:ejustice:commons:core:v1" xmlns:ns2="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1" Id="temp">
+          <Origin>Server</Origin>
+          <Code>812</Code>
+          <Message>You can not move a message from your Inbox to your Sentbox (even via recycle bin) and vice versa.</Message>
+          <Retry>false</Retry>
+          <Contact>ejusticeDev@ejustice.fgov.be</Contact>
+          <ns5:Actor>Backend</ns5:Actor>
+          <ns5:DateTime>2017-02-09T14:32:08.251+01:00</ns5:DateTime>
+          <ns5:Trace>
+          </ns5:Trace>
+        </ns5:SystemError>
+      </detail>
+    </soap:Fault>
+  </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/></con:response><con:dispatchConfig/></con:mockOperation></con:mockService><con:properties/><con:wssContainer><con:crypto><con:source>D:/work/freelance/tasks/2017.05 SOAP Web Service Client &amp; Unit Tests/eboxServices/soapUI/ConsultationService-soapui-project.xml</con:source><con:password>davidvdb;</con:password><con:type>KEYSTORE</con:type></con:crypto><con:outgoing><con:name>outgoing</con:name><con:entry type="Timestamp"><con:configuration><timeToLive>5000</timeToLive><strictTimestamp>true</strictTimestamp></con:configuration></con:entry><con:entry type="Signature" username="davidvdb-tst.wss.just.fgov.be (signer-ca1-1.pki.just.fgov.be)" password="davidvdb;"><con:configuration><crypto>davidvdb-tst.wss.just.fgov.be.jks</crypto><keyIdentifierType>1</keyIdentifierType><signatureAlgorithm/><signatureCanonicalization/><useSingleCert>true</useSingleCert><digestAlgorithm/><customTokenValueType/><customTokenId/><signaturePart><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="id" value=""/>
+  <con:entry key="name" value="Timestamp"/>
+  <con:entry key="enc" value="Content"/>
+  <con:entry key="namespace" value="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"/>
+</xml-fragment>]]></signaturePart><signaturePart><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="id" value=""/>
+  <con:entry key="name" value="Body"/>
+  <con:entry key="enc" value="Content"/>
+  <con:entry key="namespace" value="http://schemas.xmlsoap.org/soap/envelope/"/>
+</xml-fragment>]]></signaturePart></con:configuration></con:entry></con:outgoing><con:outgoing><con:name>user</con:name><con:entry type="Username" username="iLite-acc" password="uDrcYzGyvT?X7Sx+tsYh"><con:configuration><addCreated>true</addCreated><addNonce>true</addNonce><passwordType>PasswordText</passwordType></con:configuration></con:entry></con:outgoing></con:wssContainer><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>

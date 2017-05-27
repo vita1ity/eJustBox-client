@@ -8,6 +8,8 @@
 
 package be.fgov.ejustice.ejustbox.core.v1;
 
+import java.util.Arrays;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -156,4 +158,12 @@ public class ContentInfoType {
         this.hasAnnex = value;
     }
 
+	@Override
+	public String toString() {
+		return "ContentInfoType [encryptableINSSPerson=" + Arrays.toString(encryptableINSSPerson) + ", title=" + title
+				+ ", mimeType=" + mimeType + ", hasAnnex=" + hasAnnex + "]";
+	}
+
+    
+    
 }

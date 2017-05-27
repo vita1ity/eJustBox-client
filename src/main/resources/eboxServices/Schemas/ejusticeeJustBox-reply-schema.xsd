@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns="http://reply.jbox.jsb.just.fgov.be"
+            targetNamespace="http://reply.jbox.jsb.just.fgov.be" elementFormDefault="qualified"
+            xmlns:tns="http://reply.jbox.jsb.just.fgov.be"
+            xmlns:swaref="http://ws-i.org/profiles/basic/1.1/xsd">
+            
+            
+  <xsd:import namespace="http://ws-i.org/profiles/basic/1.1/xsd" schemaLocation="swaref-3_0.xsd"/>    
+
+  
+  <xsd:element name="replyMessage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="sender" type="tns:ActorType" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="destination" type="tns:ActorType" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="subject" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="text" type="xsd:base64Binary" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>    
+  
+   <xsd:complexType name="ActorType">
+      <xsd:sequence>
+        <xsd:element name="id" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="quality" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="type" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+      </xsd:sequence>
+   </xsd:complexType>
+ 
+
+</xsd:schema>

@@ -93,4 +93,11 @@ public class LocalisedStringType {
         this.lang = value;
     }
 
+	@Override
+	public String toString() {
+		return "LocalisedStringType [value=" + value + ", lang=" + lang + "]";
+	}
+
+    
+    
 }

@@ -76,4 +76,12 @@ public class DeleteMessageResponseType
         return this.messageId;
     }
 
+	@Override
+	public String toString() {
+		return "DeleteMessageResponseType [messageId=" + messageId + ", status=" + status + ", id=" + id
+				+ ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+    
+    
+
 }

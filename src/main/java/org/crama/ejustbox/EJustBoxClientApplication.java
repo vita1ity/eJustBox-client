@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import org.crama.ejustbox.client.ConsultationWSClient;
 import org.crama.ejustbox.client.PublicationWSClient;
@@ -38,6 +39,8 @@ import be.fgov.ejustice.ejustbox.publication.protocol.v1.SendMessageResponse;
 public class EJustBoxClientApplication implements CommandLineRunner {
 
 	private static final ObjectFactory OBJECT_FACTORY = new ObjectFactory();
+	private static final be.fgov.ejustice.ejustbox.publication.protocol.v1.ObjectFactory PUBLICATION_OBJECT_FACTORY = 
+			new be.fgov.ejustice.ejustbox.publication.protocol.v1.ObjectFactory();
 	
 	@Autowired
 	private ConsultationWSClient consultationClient;
@@ -78,9 +81,40 @@ public class EJustBoxClientApplication implements CommandLineRunner {
 	@Value("${ejustbox.client.messageId2}")
 	private String messageId2;
 	
+	@Value("${ejustbox.publication.client.dest.id1}")
+	private String destId1;
+	
+	@Value("${ejustbox.publication.client.dest.type1}")
+	private String destType1;
+	
+	@Value("${ejustbox.publication.client.dest.quality1}")
+	private String destQuality1;
+	
+	@Value("${ejustbox.publication.client.dest.id2}")
+	private String destId2;
+	
+	@Value("${ejustbox.publication.client.dest.type2}")
+	private String destType2;
+	
+	@Value("${ejustbox.publication.client.dest.quality2}")
+	private String destQuality2;
+	
+	@Value("${ejustbox.publication.client.doc.title}")
+	private String docTitle;
+	
+	@Value("${ejustbox.publication.client.doc.content}")
+	private String docContent;
+	
+	@Value("${ejustbox.publication.client.content.type}")
+	private String contentType;
+	
+	@Value("${ejustbox.publication.client.publication.id}")
+	private String publicationId;
 	
 	
 	private static final Logger log = LoggerFactory.getLogger(EJustBoxClientApplication.class);
+	
+	private Scanner sc = new Scanner(System.in);
 	
 	public static void main(String[] args) {
 		
@@ -96,118 +130,195 @@ public class EJustBoxClientApplication implements CommandLineRunner {
 		
 		log.info("EJustBox Client running...");
 		
-		getBoxInfoRequest();
+		menu();
 		
 	
 	}
 	
-	private void menu() {
+	private void menu() throws XmlMappingException, IOException {
+		
+		while (true) {
+			
+			System.out.println("Choose method id that you want to test");
+			
+			System.out.println("1. Get Box Info");
+			System.out.println("2. Get Messages List");
+			System.out.println("3. Get Full Message");
+			System.out.println("4. Move Message");
+			System.out.println("5. Delete Message");
+			System.out.println("6. Get Message History");
+			System.out.println("7. Get Message Acknowlegments");
+			System.out.println("8. Send Message");
+			System.out.println("0. Exit");
+			
+			int option = sc.nextInt();
+			
+			switch (option) {
+			case 1: 
+				getBoxInfoRequest();
+				break;
+			case 2:
+				getMessagesListRequest();
+				break;
+			case 3:
+				getFullMessageRequest();
+				break;
+			case 4:
+				moveMessageRequest();
+				break;
+			case 5:
+				deleteMessageRequest();
+				break;
+			case 6:
+				getHistoryRequest();
+				break;
+			case 7:
+				getMessageAcknowlegementsRequest();
+				break;
+			case 8:
+				sendMessageRequest();
+				break;
+			case 0:
+				System.exit(0);
+			default:
+				System.out.println("Wrong option");
+				break;
+			}
+			
+		}
 		
 	}
-	
-	private void getBoxInfoRequest() throws XmlMappingException, IOException {
-		
-		
+	private ActorType createDummyActor() {
 		ActorType actor = OBJECT_FACTORY.createActorType();
 		actor.setId(actorId);
 		actor.setType(actorType);
 		actor.setQuality(actorQuality);
 		actor.setName(actorName);
+		return actor;
+	}
+	private void getBoxInfoRequest() throws XmlMappingException, IOException {
 		
+		ActorType actor = createDummyActor();
 		try {
 			GetBoxInfoResponseType response = consultationClient.getBoxInfo(actor);
+			
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
+		
+		
+	}
+	
+	private void getMessagesListRequest() throws XmlMappingException, IOException {
+		
+		ActorType actor = createDummyActor();
 		
 		try {
-			GetMessageListResponseType response = consultationClient.getMessageList(actor, source, startIndex, endIndex);
+			GetMessageListResponseType response = consultationClient.getMessageList(actor, source, startIndex, endIndex, null);
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
-		
+	}
+	
+	private void getFullMessageRequest() throws XmlMappingException, IOException {
+	
+		ActorType actor = createDummyActor();
 		try {
 			GetFullMessageResponseType response = consultationClient.getFullMessage(actor, source, messageId);
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
 		
+	}
+	
+	private void moveMessageRequest() throws XmlMappingException, IOException {
+		
+		ActorType actor = createDummyActor();
 		try {
 			MoveMessageResponseType response = consultationClient.moveMessages(actor, source, destination, 
 					new ArrayList<String>(Arrays.asList(messageId1, messageId2)));
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
+	}	
 		
+	private void deleteMessageRequest() throws XmlMappingException, IOException {	
+		
+		ActorType actor = createDummyActor();
 		try {
 			DeleteMessageResponseType response = consultationClient.deleteMessages(actor, source,
 					new ArrayList<String>(Arrays.asList(messageId1, messageId2)));
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
-		}
+		}	
+	}
+	
+	private void getHistoryRequest() throws XmlMappingException, IOException {
 		
+		ActorType actor = createDummyActor();
 		try {
 			GetHistoryResponseType response = consultationClient.getHistory(actor, source, messageId1);
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
+	}
+	
+	private void getMessageAcknowlegementsRequest() throws XmlMappingException, IOException {
 		
+		ActorType actor = createDummyActor();
 		try {
 			GetMessageAcknowledgmentsStatusResponseType response = consultationClient.getMessageAcknowlegments(actor, messageId1, null, null);
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());
 		}
+	}
+	
+	private void sendMessageRequest() throws XmlMappingException, IOException {
 		
+		ActorType actor = createDummyActor();
 		
-		//TODO replace with OBJECT_FACTORY
-		//TODO combine model
-		ActorType actor2 = new ActorType();
-		actor2.setId(actorId);
-		actor2.setType(actorType);
-		actor2.setQuality(actorQuality);
-		actor2.setName(actorName);
+		DestinationContextType destinationContext1 = PUBLICATION_OBJECT_FACTORY.createDestinationContextType();
+		destinationContext1.setId(destId1);
+		destinationContext1.setType(destType1);
+		destinationContext1.setQuality(destQuality1);
 		
-		DestinationContextType destinationContext1 = new DestinationContextType();
-		destinationContext1.setId("qwwe");
-		destinationContext1.setType("type");
-		destinationContext1.setQuality("quality");
-		
-		DestinationContextType destinationContext2 = new DestinationContextType();
-		destinationContext2.setId("qwwe2");
-		destinationContext2.setType("type2");
-		destinationContext2.setQuality("quality2");
+		DestinationContextType destinationContext2 = PUBLICATION_OBJECT_FACTORY.createDestinationContextType();
+		destinationContext2.setId(destId2);
+		destinationContext2.setType(destType2);
+		destinationContext2.setQuality(destQuality2);
 		
 		List<DestinationContextType> destContext = new ArrayList<DestinationContextType>(Arrays.asList(destinationContext1, destinationContext2));
 		
 		ContentContextType contentContext = new ContentContextType();
 		PublicationDocumentType docType = new PublicationDocumentType();
-		docType.setTitle("Message Title");
-		docType.setEncryptableContent(new byte[]{1, 0, 1, 0});
+		docType.setTitle(docTitle);
+		docType.setEncryptableContent(docContent.getBytes());
 		PublicationContentType pubContType = new PublicationContentType();
 		pubContType.setDocument(docType);
 		ContentSpecificationType specType = new ContentSpecificationType();
-		specType.setApplicationName("app");
-		specType.setContentType("text");
-		specType.setIsEncrypted(true);
-		specType.setIsImportant(true);
-		specType.setPublicationReceipt(true);
-		specType.setReadReceipt(true);
-		specType.setReceivedReceipt(true);
+		specType.setContentType(contentType);
 		
 		contentContext.setContent(pubContType);
 		contentContext.setContentSpecification(specType);
 		
-		String publicationId = "2387246375262";
 		
 		try {
-			SendMessageResponse response = publicationClient.sendMessage(actor2, destContext, contentContext, publicationId);
+			SendMessageResponse response = publicationClient.sendMessage(publicationId, actor, destContext, contentContext, null);
+			System.out.println(response);
 		}
 		catch (EJustBoxClientException ex) {
 			System.err.println(ex.getSystemError());

@@ -208,4 +208,12 @@ public class GetMessagesListRequestType {
         return this.customMeta;
     }
 
+	@Override
+	public String toString() {
+		return "GetMessagesListRequestType [actor=" + actor + ", source=" + source + ", startIndex=" + startIndex
+				+ ", endIndex=" + endIndex + ", customMeta=" + customMeta + "]";
+	}
+
+    
+    
 }

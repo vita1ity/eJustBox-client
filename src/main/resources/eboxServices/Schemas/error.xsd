@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:err="http://jsb.belgium.be/errorHandling/error/v1_00"
+            xmlns:cod="http://jsb.belgium.be/errorHandling/code/v1_00"
+            targetNamespace="http://jsb.belgium.be/errorHandling/error/v1_00" elementFormDefault="qualified">
+  <xsd:annotation>
+    <xsd:documentation>Definitions of error types</xsd:documentation>
+  </xsd:annotation>
+  
+  <xsd:import namespace="http://jsb.belgium.be/errorHandling/code/v1_00" schemaLocation="code.xsd"/>
+  
+  <xsd:element name="error" final="#all">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="code" type="cod:CodeType" minOccurs="1" maxOccurs="1"/>
+        <xsd:element name="cause" type="cod:CodeType" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+
+  
+  <xsd:element name="Fault" final="#all">
+    <xsd:annotation>
+      <xsd:documentation>Service fault</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="messageId" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        <xsd:element ref="err:error" minOccurs="0" maxOccurs="1"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  
+</xsd:schema>

@@ -102,4 +102,14 @@ public class ContentSpecificationType
         this.readReceipt = value;
     }
 
+	@Override
+	public String toString() {
+		return "ContentSpecificationType [publicationReceipt=" + publicationReceipt + ", receivedReceipt="
+				+ receivedReceipt + ", readReceipt=" + readReceipt + ", applicationName=" + applicationName
+				+ ", contentType=" + contentType + ", isImportant=" + isImportant + ", isEncrypted=" + isEncrypted
+				+ "]";
+	}
+    
+    
+
 }

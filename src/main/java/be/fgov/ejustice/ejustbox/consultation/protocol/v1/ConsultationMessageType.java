@@ -194,4 +194,12 @@ public class ConsultationMessageType {
         this.messageId = value;
     }
 
+	@Override
+	public String toString() {
+		return "ConsultationMessageType [publicationId=" + publicationId + ", destinationContext=" + destinationContext
+				+ ", contentContext=" + contentContext + ", meta=" + meta + ", messageId=" + messageId + "]";
+	}
+
+    
+    
 }

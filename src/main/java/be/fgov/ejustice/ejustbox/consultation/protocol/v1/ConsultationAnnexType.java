@@ -8,6 +8,8 @@
 
 package be.fgov.ejustice.ejustbox.consultation.protocol.v1;
 
+import java.util.Arrays;
+
 import javax.activation.DataHandler;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -169,4 +171,12 @@ public class ConsultationAnnexType {
         this.mimeType = value;
     }
 
+	@Override
+	public String toString() {
+		return "ConsultationAnnexType [encryptableTitle=" + Arrays.toString(encryptableTitle) + ", encryptableContent="
+				+ encryptableContent + ", downloadFileName=" + downloadFileName + ", mimeType=" + mimeType + "]";
+	}
+
+    
+    
 }

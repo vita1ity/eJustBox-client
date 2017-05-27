@@ -193,4 +193,12 @@ public class ConsultationContentType {
         this.error = value;
     }
 
+	@Override
+	public String toString() {
+		return "ConsultationContentType [document=" + document + ", encryptableINSSPerson=" + encryptableINSSPerson
+				+ ", annex=" + annex + ", acknowledgment=" + acknowledgment + ", error=" + error + "]";
+	}
+    
+    
+
 }

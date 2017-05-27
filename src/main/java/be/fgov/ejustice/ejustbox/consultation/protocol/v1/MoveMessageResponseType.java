@@ -76,4 +76,12 @@ public class MoveMessageResponseType
         return this.messageId;
     }
 
+	@Override
+	public String toString() {
+		return "MoveMessageResponseType [messageId=" + messageId + ", status=" + status + ", id=" + id
+				+ ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+
+    
+    
 }

@@ -175,6 +175,12 @@ public class MoveMessageRequestType {
         }
         return this.messageId;
     }
+
+	@Override
+	public String toString() {
+		return "MoveMessageRequestType [actor=" + actor + ", source=" + source + ", destination=" + destination
+				+ ", messageId=" + messageId + "]";
+	}
     
     
 

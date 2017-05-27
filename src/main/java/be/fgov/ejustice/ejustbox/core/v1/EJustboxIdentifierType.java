@@ -247,6 +247,21 @@ public class EJustboxIdentifierType
             this.lastName = value;
         }
 
+		@Override
+		public String toString() {
+			return "User [value=" + value + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+		}
+
+        
+        
     }
+
+
+	@Override
+	public String toString() {
+		return "EJustboxIdentifierType [quality=" + quality + ", user=" + user + ", id=" + id + ", type=" + type + "]";
+	}
+    
+    
 
 }

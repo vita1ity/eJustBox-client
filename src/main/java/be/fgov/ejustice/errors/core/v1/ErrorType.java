@@ -220,4 +220,12 @@ public class ErrorType {
         this.id = value;
     }
 
+	@Override
+	public String toString() {
+		return "ErrorType [origin=" + origin + ", code=" + code + ", message=" + message + ", retry=" + retry
+				+ ", contact=" + contact + ", id=" + id + "]";
+	}
+
+    
+    
 }

@@ -110,4 +110,11 @@ public class CustomMetaType {
         this.value = value;
     }
 
+	@Override
+	public String toString() {
+		return "CustomMetaType [key=" + key + ", value=" + value + "]";
+	}
+    
+    
+
 }

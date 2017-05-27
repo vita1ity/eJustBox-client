@@ -154,4 +154,12 @@ public class ActorType
         this.personInOrganisation = value;
     }
 
+	@Override
+	public String toString() {
+		return "ActorType [quality=" + quality + ", name=" + name + ", firstName=" + firstName
+				+ ", personInOrganisation=" + personInOrganisation + ", id=" + id + ", type=" + type + "]";
+	}
+    
+    
+
 }

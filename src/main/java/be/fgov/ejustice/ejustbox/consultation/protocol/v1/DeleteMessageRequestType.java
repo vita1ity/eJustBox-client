@@ -139,4 +139,11 @@ public class DeleteMessageRequestType {
         return this.messageId;
     }
 
+	@Override
+	public String toString() {
+		return "DeleteMessageRequestType [actor=" + actor + ", source=" + source + ", messageId=" + messageId + "]";
+	}
+    
+    
+
 }

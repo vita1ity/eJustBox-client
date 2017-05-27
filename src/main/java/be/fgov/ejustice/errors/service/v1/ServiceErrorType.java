@@ -135,4 +135,13 @@ public class ServiceErrorType
         this.trace = value;
     }
 
+	@Override
+	public String toString() {
+		return "ServiceErrorType [actor=" + actor + ", dateTime=" + dateTime + ", trace=" + trace + ", origin=" + origin
+				+ ", code=" + code + ", message=" + message + ", retry=" + retry + ", contact=" + contact + ", id=" + id
+				+ "]";
+	}
+    
+    
+
 }

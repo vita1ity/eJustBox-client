@@ -130,4 +130,12 @@ public class MessageRequestType {
         this.messageId = value;
     }
 
+	@Override
+	public String toString() {
+		return "MessageRequestType [actor=" + actor + ", source=" + source + ", messageId=" + messageId + "]";
+	}
+    
+    
+    
+
 }

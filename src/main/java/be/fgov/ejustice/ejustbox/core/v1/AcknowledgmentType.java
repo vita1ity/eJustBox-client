@@ -163,4 +163,12 @@ public class AcknowledgmentType {
         this.dateTime = value;
     }
 
+	@Override
+	public String toString() {
+		return "AcknowledgmentType [messageId=" + messageId + ", recipient=" + recipient + ", ackType=" + ackType
+				+ ", dateTime=" + dateTime + "]";
+	}
+    
+    
+
 }

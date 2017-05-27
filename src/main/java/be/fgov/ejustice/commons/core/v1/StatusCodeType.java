@@ -98,4 +98,11 @@ public class StatusCodeType {
         this.value = value;
     }
 
+	@Override
+	public String toString() {
+		return "StatusCodeType [statusCode=" + statusCode + ", value=" + value + "]";
+	}
+    
+    
+
 }

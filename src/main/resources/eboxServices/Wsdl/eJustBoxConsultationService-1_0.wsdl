@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:ejustboxp="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:mon="urn:be:fgov:ejustice:ejustbox:monitoring:protocol:v1"
+             xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+             targetNamespace="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1"
+             xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+             xmlns:s0="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:error="http://jsb.belgium.be/errorHandling/error/v1_00">
+  <types>
+    <xsd:schema>
+      <xsd:import namespace="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1"
+                  schemaLocation="../Schemas/ejustice-eJustBox-consultation-schema-protocol-1_0.xsd"/>
+      <xsd:import namespace="http://jsb.belgium.be/errorHandling/error/v1_00" 
+                  schemaLocation="../../../UtilServices/Templating/V2.00/schemas/error.xsd"/>
+            
+    </xsd:schema>
+  </types>
+  
+  <message name="Fault">
+    <part name="fault" element="error:Fault" />
+  </message>
+  <message name="GetBoxInfoRequestMessage">
+    <part name="body" element="ejustboxp:GetBoxInfoRequest"/>
+  </message>
+  <message name="GetBoxInfoResponseMessage">
+    <part name="body" element="ejustboxp:GetBoxInfoResponse"/>
+  </message>
+  <message name="GetMessagesListRequestMessage">
+    <part name="body" element="ejustboxp:GetMessagesListRequest"/>
+  </message>
+  <message name="GetMessagesListResponseMessage">
+    <part name="body" element="ejustboxp:GetMessagesListResponse"/>
+  </message>
+  <message name="GetFullMessageRequestMessage">
+    <part name="body" element="ejustboxp:GetFullMessageRequest"/>
+  </message>
+  <message name="GetFullMessageResponseMessage">
+    <part name="body" element="ejustboxp:GetFullMessageResponse"/>
+  </message>
+  <message name="MoveMessageRequestMessage">
+    <part name="body" element="ejustboxp:MoveMessageRequest"/>
+  </message>
+  <message name="DeleteMessageRequestMessage">
+    <part name="body" element="ejustboxp:DeleteMessageRequest"/>
+  </message>
+  <message name="MoveMessageResponseMessage">
+    <part name="body" element="ejustboxp:MoveMessageResponse"/>
+  </message>
+  <message name="DeleteMessageResponseMessage">
+    <part name="body" element="ejustboxp:DeleteMessageResponse"/>
+  </message>
+  <message name="GetMessageHistoryRequestMessage">
+    <part name="body" element="ejustboxp:GetHistoryRequest"/>
+  </message>
+  <message name="GetMessageHistoryResponseMessage">
+    <part name="body" element="ejustboxp:GetHistoryResponse"/>
+  </message>
+  <message name="GetMessageAcknowledgmentsStatusRequestMessage">
+    <part name="body" element="ejustboxp:GetMessageAcknowledgmentsStatusRequest"/>
+  </message>
+  <message name="GetMessageAcknowledgmentsStatusResponseMessage">
+    <part name="body" element="ejustboxp:GetMessageAcknowledgmentsStatusResponse"/>
+  </message>
+  <message name="InsertOoORequestMessage">
+    <part name="body" element="ejustboxp:InsertOoORequest"/>
+  </message>
+  <message name="InsertOoOResponseMessage">
+    <part name="body" element="ejustboxp:InsertOoOResponse"/>
+  </message>
+  <message name="DeleteOoORequestMessage">
+    <part name="body" element="ejustboxp:DeleteOoORequest"/>
+  </message>
+  <message name="DeleteOoOResponseMessage">
+    <part name="body" element="ejustboxp:DeleteOoOResponse"/>
+  </message>
+  <message name="GetOoOListRequestMessage">
+    <part name="body" element="ejustboxp:GetOoOListRequest"/>
+  </message>
+  <message name="GetOoOListResponseMessage">
+    <part name="body" element="ejustboxp:GetOoOListResponse"/>
+  </message>
+  <portType name="eJustBoxConsultationPortType">
+    <operation name="getBoxInfo">
+      <input message="ejustboxp:GetBoxInfoRequestMessage"/>
+      <output message="ejustboxp:GetBoxInfoResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="getMessagesList">
+      <input message="ejustboxp:GetMessagesListRequestMessage"/>
+      <output message="ejustboxp:GetMessagesListResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="getFullMessage">
+      <input message="ejustboxp:GetFullMessageRequestMessage"/>
+      <output message="ejustboxp:GetFullMessageResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="moveMessage">
+      <input message="ejustboxp:MoveMessageRequestMessage"/>
+      <output message="ejustboxp:MoveMessageResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="deleteMessage">
+      <input message="ejustboxp:DeleteMessageRequestMessage"/>
+      <output message="ejustboxp:DeleteMessageResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="getMessageHistory">
+      <input message="ejustboxp:GetMessageHistoryRequestMessage"/>
+      <output message="ejustboxp:GetMessageHistoryResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="getMessageAcknowledgmentsStatus">
+      <input message="ejustboxp:GetMessageAcknowledgmentsStatusRequestMessage"/>
+      <output message="ejustboxp:GetMessageAcknowledgmentsStatusResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="insertOoO">
+      <input message="ejustboxp:InsertOoORequestMessage"/>
+      <output message="ejustboxp:InsertOoOResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="deleteOoO">
+      <input message="ejustboxp:DeleteOoORequestMessage"/>
+      <output message="ejustboxp:DeleteOoOResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+    <operation name="getOoOList">
+      <input message="ejustboxp:GetOoOListRequestMessage"/>
+      <output message="ejustboxp:GetOoOListResponseMessage"/>
+      <fault name="FaultName" message="ejustboxp:Fault"/>
+    </operation>
+  </portType>
+  <binding name="eJustBoxConsultationBinding" type="ejustboxp:eJustBoxConsultationPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="getBoxInfo">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getBoxInfo"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessagesList">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessagesList"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getFullMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getFullMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="moveMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:moveMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="deleteMessage">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteMessage"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessageHistory">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageHistory"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getMessageAcknowledgmentsStatus">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getMessageAcknowledgmentsStatus"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="insertOoO">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:insertOoO"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="deleteOoO">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:deleteOoO"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+       <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+    <operation name="getOoOList">
+      <soap:operation soapAction="urn:be:fgov:ejustice:ejustbox:consultation:protocol:v1:getOoOList"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+      <fault name="FaultName">
+        <soap:fault name="FaultName" use="literal"/>
+      </fault>
+    </operation>
+  </binding>
+  <service name="eJustBoxConsultationService">
+    <port name="eJustBoxConsultationPort" binding="ejustboxp:eJustBoxConsultationBinding">
+      <soap:address location="http://localhost/eJustBoxConsultationService"/>
+    </port>
+  </service>
+  <!-- technical monitoring methods -->
+</definitions>

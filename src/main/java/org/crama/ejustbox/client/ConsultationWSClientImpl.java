@@ -29,6 +29,7 @@ import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageRequestType
 import be.fgov.ejustice.ejustbox.consultation.protocol.v1.MoveMessageResponseType;
 import be.fgov.ejustice.ejustbox.consultation.protocol.v1.ObjectFactory;
 import be.fgov.ejustice.ejustbox.core.v1.ActorType;
+import be.fgov.ejustice.ejustbox.core.v1.CustomMetaType;
 import be.fgov.ejustice.errors.service.v1.SystemErrorType;
 
 public class ConsultationWSClientImpl extends WebServiceGatewaySupport implements ConsultationWSClient {
@@ -75,7 +76,7 @@ public class ConsultationWSClientImpl extends WebServiceGatewaySupport implement
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex) 
+	public GetMessageListResponseType getMessageList(ActorType actor, String source, int startIndex, int endIndex, List<CustomMetaType> metaList) 
 			throws XmlMappingException, IOException, EJustBoxClientException {
 
 		log.info("Requesting get message list for actor: " + actor + "/n source: " + source + ", start index: " + startIndex + ", endIndex: " + endIndex);

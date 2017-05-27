@@ -124,4 +124,11 @@ public class StatusType {
         this.statusDetail = value;
     }
 
+	@Override
+	public String toString() {
+		return "StatusType [statusCode=" + statusCode + ", statusMessage=" + statusMessage + "]";
+	}
+
+    
+    
 }

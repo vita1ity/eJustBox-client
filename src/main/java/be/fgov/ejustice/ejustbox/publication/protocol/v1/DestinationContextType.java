@@ -69,4 +69,12 @@ public class DestinationContextType
         this.ooOProcessed = value;
     }
 
+	@Override
+	public String toString() {
+		return "DestinationContextType [ooOProcessed=" + ooOProcessed + ", quality=" + quality + ", user=" + user
+				+ ", id=" + id + ", type=" + type + "]";
+	}
+    
+    
+
 }

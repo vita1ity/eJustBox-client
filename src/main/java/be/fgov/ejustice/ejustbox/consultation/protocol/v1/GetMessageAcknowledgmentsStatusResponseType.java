@@ -308,8 +308,34 @@ public class GetMessageAcknowledgmentsStatusResponseType
                 this.read = value;
             }
 
+			@Override
+			public String toString() {
+				return "Row [recipient=" + recipient + ", published=" + published + ", received=" + received + ", read="
+						+ read + "]";
+			}
+            
+            
+
         }
 
+
+		@Override
+		public String toString() {
+			return "AcknowledgmentsStatus [row=" + row + "]";
+		}
+
+        
+        
     }
+
+
+	@Override
+	public String toString() {
+		return "GetMessageAcknowledgmentsStatusResponseType [acknowledgmentsStatus=" + acknowledgmentsStatus
+				+ ", status=" + status + ", id=" + id + ", inResponseTo=" + inResponseTo + ", issueInstant="
+				+ issueInstant + "]";
+	}
+    
+    
 
 }

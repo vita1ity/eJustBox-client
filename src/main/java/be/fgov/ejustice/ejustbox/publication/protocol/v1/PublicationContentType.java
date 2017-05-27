@@ -9,6 +9,7 @@
 package be.fgov.ejustice.ejustbox.publication.protocol.v1;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -129,4 +130,12 @@ public class PublicationContentType {
         return this.annex;
     }
 
+	@Override
+	public String toString() {
+		return "PublicationContentType [document=" + document + ", encryptableINSSPerson="
+				+ Arrays.toString(encryptableINSSPerson) + ", annex=" + annex + "]";
+	}
+
+    
+    
 }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:cod="http://jsb.belgium.be/errorHandling/code/v1_00" xmlns:iso="http://jsb.belgium.be/common/isocodes/v1_00"
+            targetNamespace="http://jsb.belgium.be/errorHandling/code/v1_00" elementFormDefault="qualified">
+
+	<xsd:annotation>
+		<xsd:documentation>
+			Definitions of code types.
+		</xsd:documentation>
+	</xsd:annotation>
+
+        <xsd:import namespace="http://jsb.belgium.be/common/isocodes/v1_00"
+                    schemaLocation="./isocodes.xsd"/>
+
+	<xsd:simpleType name="SimpleCodeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A simple code type consists of a string, which is at least one character long, and cannot
+				start with whitespace.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:string">
+ 			<xsd:pattern value="[^\s].*"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+        
+ 	<xsd:complexType name="DescriptionType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A language-dependent description can be created by setting the language attribute of the 
+				DescriptionType.
+				
+				A short description can be provided in the shortDescription attribute. Although there are no
+				restrictions set on the short description, it is really meant for short descriptions, not 
+				complete novels.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="xsd:string">
+				<xsd:attribute name="language" type="iso:LanguageType" use="optional"/>
+				<xsd:attribute name="shortDescription" type="xsd:string" use="optional"/>
+			</xsd:extension>
+		</xsd:simpleContent>
+	</xsd:complexType>       
+
+	<xsd:complexType name="DescriptiveCodeType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A descriptive code type consists of a simple code, and zero or more descriptions for that
+				code. If more than one description is provided, each should be in a different language, although
+				this is not enforced in the schema.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="code" type="cod:SimpleCodeType" nillable="true">
+				<xsd:annotation>
+					<xsd:documentation>
+						A code should have a simple code which identifies it. However, if this code is
+						unknown, for whatever reason, it should be explicitly set to nill.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="description" type="cod:DescriptionType" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>
+						The description of a code is not always known, or required. In many cases, the simple
+						code is sufficient, and the description can be omitted. 
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+                        <xsd:element name="values" minOccurs="0" maxOccurs="1">
+                               <xsd:annotation>
+					<xsd:documentation>
+						Values that caused the error 
+					</xsd:documentation>
+				</xsd:annotation>
+                          <xsd:complexType>
+                            <xsd:sequence>
+                              <xsd:element name="value" type="xsd:string" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+                            </xsd:sequence>
+                         </xsd:complexType>
+                </xsd:element>                     
+		</xsd:sequence>
+	</xsd:complexType>
+
+	<xsd:complexType name="CodeType">
+
+		<xsd:complexContent>
+			<xsd:extension base="cod:DescriptiveCodeType">
+					<xsd:attribute name="codeSource" type="cod:CodeSourceType" use="optional"/>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:simpleType name="CodeSourceType">
+		<xsd:annotation>
+			<xsd:documentation>
+				A code-source type is a simple code which is restricted to known code sources.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="cod:SimpleCodeType">
+			<xsd:enumeration value="JSB">
+				<xsd:annotation>
+					<xsd:documentation>
+						A code defined by JSB
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OSB">
+				<xsd:annotation>
+					<xsd:documentation>
+						A code defined by OSB
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PROVIDER">
+				<xsd:annotation>
+					<xsd:documentation>
+						a code defined by a provider of the JSB
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			
+		</xsd:restriction>
+	</xsd:simpleType>
+
+
+</xsd:schema>

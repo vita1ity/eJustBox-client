@@ -15,6 +15,7 @@ import org.springframework.ws.soap.SoapFaultDetailElement;
 import org.springframework.ws.soap.client.SoapFaultClientException;
 
 import be.fgov.ejustice.ejustbox.core.v1.ActorType;
+import be.fgov.ejustice.ejustbox.core.v1.MetaType;
 import be.fgov.ejustice.ejustbox.publication.protocol.v1.ContentContextType;
 import be.fgov.ejustice.ejustbox.publication.protocol.v1.DestinationContextType;
 import be.fgov.ejustice.ejustbox.publication.protocol.v1.ObjectFactory;
@@ -31,10 +32,9 @@ public class PublicationWSClientImpl extends WebServiceGatewaySupport implements
 	@Value("${ejustbox.publication.service.url}")
 	private String publicationServiceUrl;
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public SendMessageResponse sendMessage(ActorType actor, List<DestinationContextType> destinationContext,
-			ContentContextType contentContext, String publicationId)
+	public SendMessageResponse sendMessage(String publicationId, ActorType actor, List<DestinationContextType> destinationContext,
+			ContentContextType contentContext, List<MetaType> metaList)
 			throws EJustBoxClientException, XmlMappingException, IOException {
 
 		log.info("Requesting send message for actor: " + actor + " destinationContext: " + destinationContext + ", "

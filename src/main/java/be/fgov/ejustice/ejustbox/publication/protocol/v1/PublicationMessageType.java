@@ -194,4 +194,13 @@ public class PublicationMessageType {
         this.publicationId = value;
     }
 
+	@Override
+	public String toString() {
+		return "PublicationMessageType [actor=" + actor + ", destinationContext=" + destinationContext
+				+ ", contentContext=" + contentContext + ", meta=" + meta + ", publicationId=" + publicationId + "]";
+	}
+
+    
+    
+    
 }

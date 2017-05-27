@@ -75,4 +75,11 @@ public class TraceType {
         return this.traceElement;
     }
 
+	@Override
+	public String toString() {
+		return "TraceType [traceElement=" + traceElement + "]";
+	}
+
+    
+    
 }

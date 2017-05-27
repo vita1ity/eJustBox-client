@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.crama.ejustbox.configuration.EJustBoxConfiguration;
+import org.crama.ejustbox.configuration.EJustBoxClientConfiguration;
 import org.crama.ejustbox.error.EJustBoxClientException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ import be.fgov.ejustice.ejustbox.core.v1.ObjectFactory;
 import be.fgov.ejustice.errors.service.v1.SystemErrorType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=EJustBoxConfiguration.class)
+@ContextConfiguration(classes=EJustBoxClientConfiguration.class)
 @SpringBootTest
 public class ConsultationWSClientTest {
 	 
@@ -178,7 +178,7 @@ public class ConsultationWSClientTest {
 		
 		ReflectionTestUtils.setField(mockConsultationClient, "consultationServiceUrl", WS_URL);
 		
-		GetMessageListResponseType response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX, END_INDEX);
+		GetMessageListResponseType response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX, END_INDEX, null);
 		
 		assertTrue(response.getStatus().getStatusMessage().equals(SUCCESS_MESSAGE));
 		assertTrue(response.getMessage().size() == MESSAGES_NUMBER);
@@ -204,7 +204,7 @@ public class ConsultationWSClientTest {
 		
 		GetMessageListResponseType response = null;
 		try {
-			response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX_ERROR_1, END_INDEX_ERROR_1);
+			response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX_ERROR_1, END_INDEX_ERROR_1, null);
 			
 		}
 		catch (EJustBoxClientException ex) {
@@ -233,7 +233,7 @@ public class ConsultationWSClientTest {
 		
 		GetMessageListResponseType response = null;
 		try {
-			response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX_ERROR_2, END_INDEX_ERROR_2);
+			response = mockConsultationClient.getMessageList(actor, SOURCE, START_INDEX_ERROR_2, END_INDEX_ERROR_2, null);
 			
 		}
 		catch (EJustBoxClientException ex) {

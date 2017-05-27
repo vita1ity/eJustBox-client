@@ -76,4 +76,12 @@ public class GetHistoryResponseType
         return this.messageId;
     }
 
+	@Override
+	public String toString() {
+		return "GetHistoryResponseType [messageId=" + messageId + ", status=" + status + ", id=" + id
+				+ ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+
+    
+    
 }

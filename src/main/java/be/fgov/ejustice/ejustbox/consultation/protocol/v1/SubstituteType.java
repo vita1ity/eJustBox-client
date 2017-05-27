@@ -101,4 +101,11 @@ public class SubstituteType
         this.absentTo = value;
     }
 
+	@Override
+	public String toString() {
+		return "SubstituteType [absentFrom=" + absentFrom + ", absentTo=" + absentTo + "]";
+	}
+
+    
+    
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://reply.jbox.jsb.just.fgov.be"
+            targetNamespace="http://reply.jbox.jsb.just.fgov.be" elementFormDefault="qualified">
+  <xsd:element name="replyMessage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="destinationID" type="xsd:integer"/>
+        <xsd:element name="ref_num" type="xsd:string"/>
+        <xsd:element name="text" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

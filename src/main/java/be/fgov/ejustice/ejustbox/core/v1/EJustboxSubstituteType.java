@@ -70,4 +70,11 @@ public class EJustboxSubstituteType
         this.quality = value;
     }
 
+	@Override
+	public String toString() {
+		return "EJustboxSubstituteType [quality=" + quality + ", id=" + id + ", type=" + type + "]";
+	}
+    
+    
+
 }

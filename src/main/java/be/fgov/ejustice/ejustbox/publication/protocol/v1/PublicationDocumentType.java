@@ -8,6 +8,8 @@
 
 package be.fgov.ejustice.ejustbox.publication.protocol.v1;
 
+import java.util.Arrays;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -106,5 +108,13 @@ public class PublicationDocumentType {
     public void setEncryptableContent(byte[] value) {
         this.encryptableContent = value;
     }
+
+	@Override
+	public String toString() {
+		return "PublicationDocumentType [title=" + title + ", encryptableContent=" + Arrays.toString(encryptableContent)
+				+ "]";
+	}
+    
+    
 
 }

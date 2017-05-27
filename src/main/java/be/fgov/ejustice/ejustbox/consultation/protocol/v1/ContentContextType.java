@@ -131,4 +131,12 @@ public class ContentContextType {
         return this.customMeta;
     }
 
+	@Override
+	public String toString() {
+		return "ContentContextType [content=" + content + ", contentSpecification=" + contentSpecification
+				+ ", customMeta=" + customMeta + "]";
+	}
+    
+    
+
 }

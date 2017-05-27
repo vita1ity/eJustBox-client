@@ -77,4 +77,12 @@ public class StatusResponseType
         this.status = value;
     }
 
+	@Override
+	public String toString() {
+		return "StatusResponseType [status=" + status + ", id=" + id + ", inResponseTo=" + inResponseTo
+				+ ", issueInstant=" + issueInstant + "]";
+	}
+    
+    
+
 }

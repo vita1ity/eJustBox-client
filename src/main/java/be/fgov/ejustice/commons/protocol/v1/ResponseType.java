@@ -132,4 +132,10 @@ public class ResponseType {
         this.issueInstant = value;
     }
 
+	@Override
+	public String toString() {
+		return "ResponseType [id=" + id + ", inResponseTo=" + inResponseTo + ", issueInstant=" + issueInstant + "]";
+	}
+
+    
 }
